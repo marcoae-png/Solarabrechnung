@@ -251,6 +251,65 @@ details{border:0;background:var(--cream);border-radius:16px}
 .register-shot img{display:block;width:100%;height:auto}
 .register-shot{margin:0 auto;background:#fff;overflow:hidden}
 .register-note{text-align:center;font-size:13px;margin:22px 0 0}
+
+/* ===== Modern 2 ===== */
+:root{--sans:"Inter","Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,Arial,sans-serif;--r:28px}
+h1,h2,h3,.brandname,.floating-note b,.price-line strong,.step:before{font-family:var(--sans)}
+h2{font-weight:650;letter-spacing:-.04em;line-height:1.05;font-size:clamp(34px,4.4vw,58px)}
+.brandname{font-weight:700;letter-spacing:-.03em;font-size:19px}
+.audience-card h3,.feature h3,.step h3,.pricing-top h3{font-weight:650;letter-spacing:-.025em}
+.hero h1,.audience-card h3,.feature h3,.step h3,.pricing-top h3{font-family:var(--sans)}
+.hero h1{font-weight:620;letter-spacing:-.05em;line-height:1}
+.hero h1 em{background:linear-gradient(100deg,#f6dc9c,#e2b95a 60%,#f0c869);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* schwebende Glas-Navigation */
+header{top:10px;background:none;border:0;box-shadow:none;margin-bottom:-76px;backdrop-filter:none}
+.nav{height:64px;margin-top:12px;padding:0 9px 0 18px;background:rgba(255,255,255,.93);-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);border:1px solid rgba(18,61,53,.08);border-radius:999px;box-shadow:0 10px 40px rgba(7,31,26,.14)}
+.navlinks a:not(.btn){padding:8px 12px;border-radius:999px;transition:background .2s}
+.navlinks a:not(.btn):hover{background:var(--mint)}
+.navlinks .btn{padding:11px 20px}
+.hero{padding:170px 0 112px}
+.hero:before{display:block;inset:0;width:auto;height:auto;border:0;border-radius:0;right:0;top:0;background:radial-gradient(#ffffff1f 1px,transparent 1.2px) 0 0/30px 30px;-webkit-mask-image:linear-gradient(#000 20%,transparent 85%);mask-image:linear-gradient(#000 20%,transparent 85%)}
+/* Band mit Schnittstellen */
+.strip{background:#fff;border-bottom:1px solid var(--line)}
+.strip .container{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 12px;padding:22px 0}
+.strip span{font-size:13px;font-weight:600;color:var(--forest);background:var(--mint);border-radius:999px;padding:8px 16px}
+.strip span:first-child{background:none;color:var(--muted);font-weight:500;padding-left:0}
+/* Bento */
+.section-soft{background:#f3f6f1}
+.features-grid{grid-template-columns:repeat(4,1fr);gap:16px}
+.feature{padding:30px;border-radius:var(--r);min-height:290px;display:flex;flex-direction:column;justify-content:flex-end;background:#fff;box-shadow:0 1px 0 #dce6df,0 12px 30px -18px rgba(18,61,53,.25)}
+.feature .iconbox{position:absolute;top:26px;left:30px;margin:0;background:var(--mint);color:var(--forest)}
+.feature h3{font-size:22px;margin-bottom:8px}
+.feature p{font-size:14px;line-height:1.55}
+.feature:nth-child(1),.feature:nth-child(6){grid-column:span 2}
+.feature:nth-child(1){background:linear-gradient(150deg,#0f342d,#1b594b);color:#fff}
+.feature:nth-child(1) h3{color:#fff;font-size:30px}.feature:nth-child(1) p{color:#cfe0d7;max-width:420px;font-size:15px}
+.feature:nth-child(1) .iconbox{background:#ffffff1c;color:var(--sun)}
+.feature:nth-child(6){background:linear-gradient(150deg,#f5e7c4,#ecd7a2)}
+.feature:nth-child(6) p{color:#4b4328}
+.feature:before{content:"";position:absolute;inset:0;background:radial-gradient(320px circle at var(--x,50%) var(--y,0),#c9a76538,transparent 65%);opacity:0;transition:opacity .3s;pointer-events:none}
+.feature:hover:before{opacity:1}
+.feature:after{display:none}
+.audience-card{border-radius:var(--r);padding:34px}
+.audience-card h3{font-size:24px}
+/* Schritte */
+.process{gap:16px}
+.step{padding:30px;background:var(--cream);border-radius:var(--r)}
+.step:not(:last-child):after{display:none}
+.step h3{font-size:23px}
+.product-band{border-radius:36px}
+.pricing-top{padding:36px 38px}
+.price-line>span:last-child{font:650 clamp(34px,5vw,48px)/1 var(--sans)!important;letter-spacing:-.04em;color:var(--forest)!important}
+summary{font-size:17px;padding:2px 0}
+details{padding:22px 26px;border-radius:20px}
+details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
+/* Schluss-Karte */
+.cta{background:#fff;padding:24px 0 110px}
+.cta-inner{max-width:min(var(--max),calc(100% - 44px));background:radial-gradient(600px 300px at 80% 0,#2d7a6280,transparent 70%),linear-gradient(135deg,#0b2a24,#174d41);border-radius:40px;padding:84px 28px;color:#fff;position:relative;overflow:hidden}
+.cta-inner h2{color:#fff}.cta-inner p{color:#cfe0d7}.cta-inner .kicker{color:#e8d5a9}.contact-hint{color:#8fa79c}
+.cta .btn-dark{background:var(--gold);color:#1b3029}.cta .btn-dark:hover{background:#e0c88f}
+@media(max-width:900px){.features-grid{grid-template-columns:repeat(2,1fr)}.feature:nth-child(1),.feature:nth-child(6){grid-column:span 2}.hero{padding:150px 0 80px}}
+@media(max-width:680px){.nav{height:58px}.navlinks{top:74px;border-radius:24px;margin:0 8px;border:1px solid var(--line)}.features-grid{grid-template-columns:1fr}.feature:nth-child(n){grid-column:auto;min-height:210px}.hero{padding:130px 0 64px}.cta-inner{border-radius:28px;padding:56px 20px}.step{padding:24px}}
 </style>
 </head>
 <body>
@@ -305,6 +364,8 @@ details{border:0;background:var(--cream);border-radius:16px}
   </div>
  </div>
 </section>
+
+<div class="strip"><div class="container"><span>Funktioniert mit</span><span>Smart-me</span><span>Solar Manager</span><span>Excel-Import (.xlsx)</span><span>QR-Rechnung</span><span>PDF &amp; E-Mail</span></div></div>
 
 <section class="section" id="vorteile">
  <div class="container">
@@ -456,6 +517,9 @@ document.getElementById('year').textContent=new Date().getFullYear();
   el.textContent=fmt(0);requestAnimationFrame(tick)
  })
 })();
+</script>
+<script>
+document.querySelectorAll('.feature').forEach(function(c){c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--x',(e.clientX-r.left)+'px');c.style.setProperty('--y',(e.clientY-r.top)+'px')})});
 </script>
 </body>
 </html>
