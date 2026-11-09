@@ -7,10 +7,31 @@
 <meta name="description" content="Solarstrom einfach abrechnen: Smart-me-Excel importieren, Solar-Manager-Daten übernehmen, QR-Rechnungen erstellen und Zahlungen im Blick behalten. Für Schweizer Liegenschaften und ZEV.">
 <meta name="theme-color" content="#123d35">
 <title>SolarAbrechnung.ch – Smart-me-Import, QR-Rechnungen &amp; Zahlungskontrolle</title>
+<meta name="google-site-verification" content="D2aPYUG7eOHbsVnw55QozQA00Y2ZQZ6Dw3JByEGHH-c" />
+
+<!-- PWA: Verknüpfung zur App-Konfiguration -->
+<link rel="manifest" href="./manifest.json">
+
+<!-- Service Worker Registrierung für die App-Installation -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(reg => console.log('Service Worker registriert!', reg))
+        .catch(err => console.log('Fehler beim Registrieren:', err));
+    });
+  }
+</script>
+
 <link rel="canonical" href="https://marcoae-png.github.io/Solarabrechnung/">
 <link rel="alternate" hreflang="de-CH" href="https://marcoae-png.github.io/Solarabrechnung/">
 <link rel="alternate" hreflang="x-default" href="https://marcoae-png.github.io/Solarabrechnung/">
+
+<!-- Favicons & App-Icons (Nutzt Ihre SVG-Vorschau als Fallback und eine PNG-Datei für Google/PWA) -->
+<link rel="icon" type="image/png" sizes="48x48" href="./favicon.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23123d35'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23f0c869'/%3E%3Cg stroke='%23ead9b5' stroke-width='4' stroke-linecap='round'%3E%3Cpath d='M32 8v6M32 50v6M8 32h6M50 32h6M15 15l4 4M45 45l4 4M49 15l-4 4M19 45l-4 4'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="./favicon.png">
+
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta name="author" content="SolarAbrechnung.ch">
 <meta property="og:type" content="website">
@@ -26,6 +47,7 @@
 <meta name="twitter:title" content="Solarstromabrechnung in Sekunden | Smart-me &amp; Solar Manager">
 <meta name="twitter:description" content="Solarstromabrechnung in Sekunden: Smart-me-Daten importieren, Solar Manager anbinden und die Rechnung mit Schweizer QR-Zahlteil direkt erstellen.">
 <meta name="twitter:image" content="https://marcoae-png.github.io/Solarabrechnung/og-image.png">
+
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Organization", "name": "SolarAbrechnung.ch", "url": "https://marcoae-png.github.io/Solarabrechnung/", "logo": "https://marcoae-png.github.io/Solarabrechnung/og-image.png", "email": "marco.aebersold@bluewin.ch", "areaServed": "CH"}, {"@context": "https://schema.org", "@type": "WebSite", "name": "SolarAbrechnung.ch", "url": "https://marcoae-png.github.io/Solarabrechnung/", "inLanguage": "de-CH"}, {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "SolarAbrechnung.ch", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "inLanguage": "de-CH", "description": "Solarstromabrechnung in Sekunden: Smart-me-Daten importieren, Solar Manager anbinden und die Rechnung mit Schweizer QR-Zahlteil direkt erstellen.", "url": "https://marcoae-png.github.io/Solarabrechnung/", "audience": {"@type": "Audience", "audienceType": "Eigentümer, Liegenschaftsverwaltungen, Solarteure"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Welche Daten kann ich importieren?", "acceptedAnswer": {"@type": "Answer", "text": "Die aktuelle Anwendung verarbeitet Smart-me-Excel-Dateien (.xlsx). Mehrere Bezügerdateien können für dasselbe volle Kalenderquartal gemeinsam ausgewählt werden."}}, {"@type": "Question", "name": "Welche Rolle spielt der Solar Manager?", "acceptedAnswer": {"@type": "Answer", "text": "Die Anwendung ruft Kennzahlen über die Solar-Manager-API ab. Dafür wird ein passender API-Schlüssel benötigt, der in der lokalen Anwendung hinterlegt wird."}}, {"@type": "Question", "name": "Kann ich die Rechnungen als PDF versenden?", "acceptedAnswer": {"@type": "Answer", "text": "Die Rechnungen können im Browser geöffnet und als PDF gedruckt bzw. gespeichert werden. Ein E-Mail-Versand ist mit eingerichtetem SMTP-Mailserver vorgesehen."}}, {"@type": "Question", "name": "Ist die Lösung für mehrere Liegenschaften geeignet?", "acceptedAnswer": {"@type": "Answer", "text": "Das vorgesehene Geschäftsmodell ist ein Jahresabo pro Liegenschaft. Wie mehrere Liegenschaften technisch und organisatorisch eingerichtet werden, wird im persönlichen Gespräch geklärt."}}, {"@type": "Question", "name": "Ist die Software bereits für alle Schweizer Abrechnungsmodelle geeignet?", "acceptedAnswer": {"@type": "Answer", "text": "Die aktuelle Anwendung bildet den beschriebenen Import- und Abrechnungsablauf ab. Die Eignung für konkrete Modelle und regulatorische Anforderungen – beispielsweise ZEV, vZEV oder LEG – muss vor dem Einsatz im jeweiligen Fall geprüft werden."}}]}]</script>
 <style>
 :root{
@@ -581,7 +603,6 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
     </nav>
   </div>
 </header>
-
 <main id="start">
 <section class="hero">
  <svg class="sky" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
@@ -592,9 +613,9 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
  </svg>
  <div class="container hero-grid">
   <div>
-   <div class="eyebrow">Die Abrechnungslösung für Schweizer Solar-Liegenschaften</div>
-   <h1>Solarstrom abrechnen. <em>Ohne Excel-Chaos.</em></h1>
-   <p class="hero-copy">Importieren Sie die Smart-me-Excel-Dateien Ihrer Bezüger, übernehmen Sie die Kennzahlen aus dem Solar Manager und erstellen Sie daraus nachvollziehbare Einzelrechnungen mit Schweizer QR-Zahlteil. Mit Rechnungsregister und Zahlungskontrolle – für Eigentümer, Verwaltungen und Solarteure.</p>
+   <div class="eyebrow">Die Abrechnungslösung für Schweizer Solar-Liegenschaften &amp; ZEV</div>
+   <h1>Solarstromabrechnung im Mehrfamilienhaus. <em>Ohne Excel-Chaos.</em></h1>
+   <p class="hero-copy">Die smarte Abrechnungslösung für den Zusammenschluss zum Eigenverbrauch (ZEV). Importieren Sie die Smart-me-Excel-Dateien Ihrer Bezüger, übernehmen Sie die Kennzahlen aus dem Solar Manager und erstellen Sie daraus nachvollziehbare Einzelrechnungen mit Schweizer QR-Zahlteil. Mit Rechnungsregister und Zahlungskontrolle – für Eigentümer, Verwaltungen und Solarteure.</p>
    <div class="hero-actions"><a class="btn btn-primary" href="#kontakt">30-Tage-Testversion starten <span>→</span></a><a class="btn btn-outline" href="#demo">Ablauf live ansehen</a></div>
    <div class="trustline"><span><b class="check">✓</b> Smart-me-Excel-Import</span><span><b class="check">✓</b> Solar-Manager-Anbindung</span><span><b class="check">✓</b> QR-Rechnung &amp; Rechnungsregister</span></div>
   </div>
@@ -614,9 +635,11 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
     </div>
     <div class="dash-foot"><span>Übersichtliche Abrechnung pro Bezüger</span><span class="qr-mini" aria-hidden="true"></span></div>
    </div>
-   <div class="floating-note"><b>Einfach & übersichtlich</b>Von Import bis Rechnung</div>
+   <div class="floating-note"><b>Einfach &amp; übersichtlich</b>Von Import bis Rechnung</div>
   </div>
  </div>
+
+
 </section>
 
 <div class="strip"><div class="container"><span>Funktioniert mit</span><span>Smart-me</span><span>Solar Manager</span><span>Excel-Import (.xlsx)</span><span>QR-Rechnung</span><span>PDF &amp; E-Mail</span></div></div>
