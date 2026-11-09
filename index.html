@@ -554,6 +554,14 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
 .demo-invoice{border:1px solid #e5eaf0;border-radius:12px;padding:18px;min-height:310px;color:#183047}.demo-placeholder{min-height:270px;display:grid;place-items:center;text-align:center;color:#64748b}.di-head{display:flex;justify-content:space-between;gap:12px;padding-bottom:15px;border-bottom:2px solid #e5eaf0}.di-head b{display:block;font-size:21px}.di-head small,.di-muted{color:#64748b}.di-address{padding:14px 0;font-size:13px}.di-line{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #edf1f5;font-size:13px}.di-line span:first-child{min-width:0}.di-total{display:flex;justify-content:space-between;padding:14px 0;font-size:18px;font-weight:800}.di-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.di-facts div{background:#f5f8fa;border-radius:9px;padding:10px}.di-facts small{display:block;color:#64748b;font-size:10px}.di-facts b{font-size:13px}.di-qr{display:flex;gap:12px;align-items:center;border-top:1px dashed #cbd5e1;padding-top:14px;margin-top:8px;font-size:11px;color:#64748b}.di-qrmark{width:76px;height:76px;flex:0 0 76px;background:repeating-conic-gradient(#183047 0 25%,#fff 0 50%) 0/10px 10px;border:7px solid #fff;outline:1px solid #cbd5e1}.demo-note{font-size:12px;color:#64748b;margin:14px 0 0}
 @media(max-width:760px){.demo-workspace{grid-template-columns:1fr}.demo-toolbar{align-items:stretch;flex-direction:column}.demo-toolbar .btn{width:100%}.demo-invoice{padding:13px}.di-facts{grid-template-columns:1fr 1fr 1fr}}
 
+
+.demo-local-tag{display:inline-flex;align-items:center;border:1px solid #b9d6c6;background:#edf7f0;color:#245c42;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;white-space:nowrap}
+.demo-upload-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:18px}
+.smartme-drop{display:flex;min-height:170px;flex-direction:column;align-items:center;justify-content:center;gap:7px;border:2px dashed #9ab8a8;border-radius:16px;background:#f5faf6;text-align:center;padding:22px;cursor:pointer;color:var(--ink);transition:.2s}
+.smartme-drop:hover,.smartme-drop.dragover{border-color:var(--green);background:#eaf4ed}.smartme-drop input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}.smartme-drop span:last-of-type{font-size:12px;color:var(--muted)}.drop-icon{font-size:28px;color:var(--green);line-height:1}
+.smartme-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.smartme-fields label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:650}.smartme-fields label span{font-size:11px;color:var(--muted);font-weight:400}.smartme-fields input,.smartme-name{width:100%;border:1px solid #cbd9d0;border-radius:9px;padding:10px;background:#fff;color:#18342e;font:inherit;min-width:0}.smartme-fields input:focus,.smartme-name:focus{outline:2px solid #8bb9a0;outline-offset:1px}.smartme-total{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin:18px 0 12px;padding-top:14px}.smartme-total strong{font-size:24px;color:var(--forest)}.smartme-result-panel{margin-top:18px}.smartme-result-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.smartme-result-head h3{margin:0}.smartme-rows{margin-top:12px}.smartme-file-row{display:grid;grid-template-columns:minmax(130px,1fr) 110px 90px;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}.smartme-file-row small{display:block;color:var(--muted);font-size:11px}.smartme-file-row input{min-width:0;width:100%;border:1px solid #cbd9d0;border-radius:7px;padding:7px}.smartme-table-wrap{overflow:auto}.smartme-table{width:100%;border-collapse:collapse;font-size:13px}.smartme-table th,.smartme-table td{padding:11px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}.smartme-table th:first-child,.smartme-table td:first-child{text-align:left}.smartme-table thead th{background:#f0f5f1;color:#36574a;font-size:11px}.smartme-table tfoot th{border-top:2px solid #9ab8a8;color:var(--forest)}.smartme-error{color:#a52c2c;background:#fff0ed;border:1px solid #f0c5bc;border-radius:10px;padding:10px;font-size:13px}.smartme-ok{color:#245c42}.smartme-result-panel .btn{margin-top:8px}
+@media(max-width:760px){.demo-upload-grid{grid-template-columns:1fr}.smartme-fields{grid-template-columns:1fr 1fr}.smartme-result-head{align-items:flex-start;flex-direction:column}.demo-toolbar{align-items:flex-start;gap:12px;flex-direction:column}}
+@media(max-width:420px){.smartme-fields{grid-template-columns:1fr}.smartme-file-row{grid-template-columns:1fr 90px}.smartme-file-row small{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -614,13 +622,34 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
 
 <section class="demo" id="demo">
  <div class="container">
-  <div class="section-head"><div class="kicker">Interaktive Produktvorschau · lokale Beispieldaten</div><h2>Sehen Sie den Ablauf in wenigen Sekunden.</h2><p>Starten Sie die Demo und erleben Sie den Ablauf mit einer Musterliegenschaft und drei Bezügern. Sie können jede Beispielrechnung öffnen und die Verbrauchs- und Tarifwerte nachvollziehen.</p></div>
-  <div class="demo-toolbar"><div><b>Musterliegenschaft Sonnenhof</b><span>Abrechnungsperiode Q3 2026 · 3 Bezüger · alle Angaben sind Beispieldaten</span></div><button class="btn btn-primary" id="demoGo" type="button">▶ Demo starten</button></div>
-  <div class="demo-workspace">
-   <div class="demo-panel"><h3>1. Bezüger auswählen</h3><p class="small muted">Wählen Sie eine Person, um deren Beispielrechnung anzuzeigen.</p><div id="demoCustomers" class="demo-customers"></div><div class="demo-progress" id="demoProgress" aria-live="polite">Bereit für den Beispielablauf.</div></div>
-   <div class="demo-panel"><h3>2. Beispielrechnung</h3><div id="demoInvoice" class="demo-invoice"><div class="demo-placeholder">Starten Sie die Demo, um eine Beispielrechnung zu sehen.</div></div></div>
+  <div class="section-head"><div class="kicker">Echte Smart-me-Dateien · lokale Testabrechnung</div><h2>Berechnen Sie Ihre Abrechnung mit echten Messwerten.</h2><p>Laden Sie Ihre originalen Smart-me-Excel-Exporte hoch. Die kWh-Werte werden direkt aus den Dateien gelesen und mit Ihren eingegebenen Tarifen in CHF berechnet.</p></div>
+  <div class="demo-toolbar"><div><b>Ihre Smart-me-Testabrechnung</b><span>Mehrere Bezügerdateien · ein gemeinsames Kalenderquartal · keine Beispieldaten</span></div><span class="demo-local-tag">100 % lokal im Browser</span></div>
+  <div class="demo-upload-grid">
+   <div class="demo-panel">
+    <h3>1. Smart-me-Dateien importieren</h3>
+    <p class="small muted">Ziehen Sie Ihre .xlsx-Dateien hier hinein oder wählen Sie sie aus. Unterstützt wird das Smart-me-Format mit Zählernummer in B2, Zeitraum in B3 und «Import Total» bzw. «Bezug Total» in Spalte A/E.</p>
+    <label class="smartme-drop" id="smartmeDrop" for="smartmeFiles"><span class="drop-icon">⇧</span><b>Smart-me-Excel hier ablegen</b><span>oder Dateien auswählen · .xlsx / .xls</span><input id="smartmeFiles" type="file" accept=".xlsx,.xls" multiple></label>
+    <div class="demo-progress" id="smartmeStatus" aria-live="polite">Noch keine Dateien ausgewählt.</div>
+    <div id="smartmeRows" class="smartme-rows"><div class="demo-placeholder">Nach dem Import erscheinen hier die erkannten Bezüger und Verbrauchswerte.</div></div>
+   </div>
+   <div class="demo-panel">
+    <h3>2. Ihre Tarife eingeben</h3>
+    <p class="small muted">Die Preise werden wie im Abrechnungstool in Rappen pro kWh eingegeben.</p>
+    <div class="smartme-fields">
+     <label>Netzstromtarif <span>Rp./kWh</span><input id="testGridRate" type="number" min="0" step="0.01" value="28"></label>
+     <label>Solarstromtarif <span>Rp./kWh</span><input id="testSolarRate" type="number" min="0" step="0.01" value="18"></label>
+     <label>Solarstromanteil am Verbrauch <span>%</span><input id="testSolarShare" type="number" min="0" max="100" step="0.1" value="30"></label>
+     <label>Zählermiete pro Bezüger <span>CHF</span><input id="testMeterRent" type="number" min="0" step="0.05" value="8"></label>
+     <label>Rabatt auf Energiekosten <span>%</span><input id="testDiscount" type="number" min="0" max="100" step="0.1" value="0"></label>
+    </div>
+    <p class="small muted">Da in einem Smart-me-Export der Gesamtbezug allein den Solar-/Netzstromanteil nicht ausweist, geben Sie den Solarstromanteil hier vor. Ohne Solar-Manager-Daten ist dieser Wert eine manuelle Annahme.</p>
+    <div class="smartme-total" id="smartmeGrandTotal"><span>Gesamttotal</span><strong>CHF 0.00</strong></div>
+    <button class="btn btn-primary" id="smartmeRecalc" type="button">CHF-Beträge berechnen</button>
+    <button class="btn btn-outline" id="smartmeCsv" type="button" disabled>Ergebnis als CSV exportieren</button>
+   </div>
   </div>
-  <p class="demo-note">Diese Vorschau läuft vollständig lokal mit festen Beispieldaten. Es werden keine Dateien eingelesen, keine Firebase-Daten verändert und keine echten Rechnungen oder E-Mails erstellt. Der QR-Zahlteil ist eine nicht zahlbare Musterillustration.</p>
+  <div class="demo-panel smartme-result-panel"><div class="smartme-result-head"><div><h3>3. Ergebnis pro Bezüger</h3><p class="small muted" id="smartmePeriod">Noch kein Abrechnungszeitraum erkannt.</p></div><span class="demo-local-tag">Unverbindliche Testberechnung</span></div><div id="smartmeResults"><div class="demo-placeholder">Importieren Sie zuerst Ihre Smart-me-Dateien.</div></div></div>
+  <p class="demo-note">Die Dateien werden ausschliesslich in Ihrem Browser verarbeitet und nicht hochgeladen oder gespeichert. Diese Vorschau erstellt keine Rechnungen, QR-Zahlteile oder E-Mails und verändert keine Daten im Kundenportal. Die CHF-Berechnung verwendet den von Ihnen eingegebenen Solarstromanteil; für eine definitive Abrechnung muss dieser mit den tatsächlichen Anlagendaten abgeglichen werden.</p>
  </div>
 </section>
 
@@ -818,7 +847,7 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
    <details><summary>Kann ich die Rechnungen als PDF versenden?</summary><p>Die Rechnungen können im Browser geöffnet und als PDF gedruckt bzw. gespeichert werden. Ein E-Mail-Versand ist mit eingerichtetem SMTP-Mailserver vorgesehen.</p></details>
    <details><summary>Ist die Lösung für mehrere Liegenschaften geeignet?</summary><p>Das vorgesehene Geschäftsmodell ist ein Jahresabo pro Liegenschaft. Wie mehrere Liegenschaften technisch und organisatorisch eingerichtet werden, wird im persönlichen Gespräch geklärt.</p></details>
    <details><summary>Ist die Software bereits für alle Schweizer Abrechnungsmodelle geeignet?</summary><p>Die aktuelle Anwendung bildet den beschriebenen Import- und Abrechnungsablauf ab. Die Eignung für konkrete Modelle und regulatorische Anforderungen – beispielsweise ZEV, vZEV oder LEG – muss vor dem Einsatz im jeweiligen Fall geprüft werden.</p></details>
-   <details><summary>Verarbeitet die interaktive Vorschau meine Smart-me-Datei?</summary><p>Nein. Die Vorschau zeigt einen Beispielablauf mit Beispieldaten. Eine ausgewählte Datei wird nicht geöffnet, ausgewertet oder hochgeladen. Für echte Abrechnungen verwenden Sie das Kundenportal.</p></details>
+   <details><summary>Verarbeitet die interaktive Vorschau meine Smart-me-Datei?</summary><p>Ja. Die Vorschau liest Ihre Smart-me-Excel-Dateien lokal im Browser aus und berechnet Testbeträge mit den von Ihnen eingegebenen Tarifen. Die Dateien werden nicht hochgeladen oder gespeichert; es werden keine Rechnungen erstellt.</p></details>
    <details><summary>Werden Zahlungseingänge automatisch mit meiner Bank abgeglichen?</summary><p>Nein. Sie markieren Rechnungen im Rechnungsregister manuell als offen oder bezahlt. Die Anwendung zeigt offene und überfällige Beträge an und kann einen Zahlungserinnerungs-Entwurf für Ihr E-Mail-Programm vorbereiten.</p></details>
   </div>
  </div>
@@ -900,32 +929,59 @@ document.querySelectorAll('.feature').forEach(function(c){c.addEventListener('po
  });
 })();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
 (function(){
- const customers=[
-  {id:'m1',name:'Familie Meier',unit:'Wohnung 1 · 1. OG',kwh:1240,solar:372,grid:868,solarRate:.18,gridRate:.28},
-  {id:'m2',name:'Lea Müller',unit:'Wohnung 2 · 2. OG',kwh:980,solar:294,grid:686,solarRate:.18,gridRate:.28},
-  {id:'m3',name:'Daniel Keller',unit:'Wohnung 3 · DG',kwh:1560,solar:468,grid:1092,solarRate:.18,gridRate:.28}
- ];
- const list=document.getElementById('demoCustomers'),invoice=document.getElementById('demoInvoice'),go=document.getElementById('demoGo'),progress=document.getElementById('demoProgress');
- if(!list||!invoice||!go||!progress)return;
- const chf=n=>'CHF '+n.toLocaleString('de-CH',{minimumFractionDigits:2,maximumFractionDigits:2});
- const kwh=n=>n.toLocaleString('de-CH',{maximumFractionDigits:0})+' kWh';
- let selected='m1',started=false;
- function amount(c){return c.solar*c.solarRate+c.grid*c.gridRate;}
- function show(c){selected=c.id;list.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===selected?'true':'false'));
-  const total=amount(c),solarCost=c.solar*c.solarRate,gridCost=c.grid*c.gridRate;
-  invoice.innerHTML='<div class="di-head"><div><small>SolarAbrechnung.ch · MUSTER</small><b>Rechnung</b><span class="di-muted">Musterliegenschaft Sonnenhof</span></div><div style="text-align:right"><b style="font-size:15px">2026Q3-'+c.id.toUpperCase()+'</b><small>Q3 2026 · Beispiel</small></div></div>'+
-   '<div class="di-address"><b>'+c.name+'</b><br>'+c.unit+'<br>3000 Bern · Musteradresse</div>'+
-   '<div class="di-facts"><div><small>Gesamtverbrauch</small><b>'+kwh(c.kwh)+'</b></div><div><small>Solarstromanteil</small><b>'+kwh(c.solar)+'</b></div><div><small>Netzstrom</small><b>'+kwh(c.grid)+'</b></div></div>'+
-   '<div class="di-line"><span>Solarstrom · '+kwh(c.solar)+' × '+chf(c.solarRate)+'</span><b>'+chf(solarCost)+'</b></div>'+
-   '<div class="di-line"><span>Netzstrom · '+kwh(c.grid)+' × '+chf(c.gridRate)+'</span><b>'+chf(gridCost)+'</b></div>'+
-   '<div class="di-line"><span>Zählermiete</span><b>'+chf(8)+'</b></div>'+
-   '<div class="di-total"><span>Total zu bezahlen</span><span>'+chf(total+8)+'</span></div>'+
-   '<div class="di-qr"><div class="di-qrmark" aria-hidden="true"></div><div><b>Muster-QR-Zahlteil</b><br>Illustration ohne Zahlungsfunktion.<br>Netzstromtarif: CHF 0.28/kWh · Solartarif: CHF 0.18/kWh</div></div>';
+ const input=document.getElementById('smartmeFiles'),drop=document.getElementById('smartmeDrop'),status=document.getElementById('smartmeStatus'),rowsBox=document.getElementById('smartmeRows'),results=document.getElementById('smartmeResults'),periodBox=document.getElementById('smartmePeriod'),totalBox=document.getElementById('smartmeGrandTotal'),recalc=document.getElementById('smartmeRecalc'),csvBtn=document.getElementById('smartmeCsv');
+ if(!input||!drop)return;
+ let imported=[],calculated=[];
+ const money=n=>'CHF '+Number(n||0).toLocaleString('de-CH',{minimumFractionDigits:2,maximumFractionDigits:2});
+ const number=n=>Number(n||0).toLocaleString('de-CH',{minimumFractionDigits:0,maximumFractionDigits:2});
+ function parseNum(v){if(typeof v==='number')return v;let s=String(v??'').trim().replace(/[\s']/g,'');if(s.includes(',')&&s.includes('.'))s=s.lastIndexOf(',')>s.lastIndexOf('.')?s.replace(/\./g,'').replace(',','.'):s.replace(/,/g,'');else s=s.replace(',','.');const n=Number(s);if(!Number.isFinite(n))throw new Error('Ungültiger Zahlenwert: '+v);return n;}
+ function dateRange(v){const m=String(v||'').match(/(\d{2}\.\d{2}\.\d{4}).*?(\d{2}\.\d{2}\.\d{4})/);if(!m)throw new Error('Zeitraum in Zelle B3 nicht lesbar: '+v);const p=t=>{const [d,mo,y]=t.split('.').map(Number);return new Date(Date.UTC(y,mo-1,d));};return[p(m[1]),p(m[2])];}
+ function quarter(d){return d.getUTCFullYear()+' Q'+(Math.floor(d.getUTCMonth()/3)+1);}
+ function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+ function nameFromFile(n){return n.replace(/\.(xlsx|xls)$/i,'').replace(/^smart[-_ ]?me[_ -]*/i,'').replace(/[_-]+/g,' ').trim()||'Bezüger';}
+ async function parseFiles(files){
+  if(!window.XLSX)throw new Error('Excel-Bibliothek konnte nicht geladen werden. Bitte Internetverbindung prüfen und Seite neu laden.');
+  if(!files.length)throw new Error('Bitte mindestens eine Smart-me-Excel-Datei auswählen.');
+  const out=[];
+  for(const file of files){
+   const wb=XLSX.read(await file.arrayBuffer(),{type:'array',cellDates:false});
+   const ws=wb.SheetNames.map(n=>wb.Sheets[n]).find(sh=>String(sh.B2?.v??'').match(/\d{5,}/)&&sh.B3?.v);
+   if(!ws)throw new Error(file.name+': Smart-me-Blatt mit Zählernummer in B2 und Zeitraum in B3 nicht gefunden.');
+   const meter=(String(ws.B2.v).match(/(\d{5,})/)||[])[0];
+   const [start,end]=dateRange(ws.B3.v),q=quarter(start);
+   const qs=new Date(Date.UTC(start.getUTCFullYear(),Math.floor(start.getUTCMonth()/3)*3,1));
+   const qe=new Date(Date.UTC(start.getUTCFullYear(),Math.floor(start.getUTCMonth()/3)*3+3,0));
+   if(start.getTime()!==qs.getTime()||end.getTime()!==qe.getTime())throw new Error(file.name+': Der Zeitraum '+start.toISOString().slice(0,10)+' bis '+end.toISOString().slice(0,10)+' ist kein volles Kalenderquartal.');
+   let kwh=null;
+   for(let r=1;r<200;r++){const label=String(ws['A'+r]?.v??'').trim().toLowerCase();if(['import total','bezug total'].includes(label)){kwh=parseNum(ws['E'+r]?.v);break;}}
+   if(kwh===null)throw new Error(file.name+': «Import Total» bzw. «Bezug Total» mit kWh-Wert in Spalte E fehlt.');
+   if(kwh<0)throw new Error(file.name+': Der Verbrauch darf nicht negativ sein.');
+   out.push({fileName:file.name,meterId:meter,name:nameFromFile(file.name),kwh,period:q,start:start.toISOString().slice(0,10),end:end.toISOString().slice(0,10)});
+  }
+  const periods=[...new Set(out.map(x=>x.period))];if(periods.length!==1)throw new Error('Die ausgewählten Dateien enthalten unterschiedliche Quartale. Bitte nur Dateien desselben Quartals wählen.');
+  if(new Set(out.map(x=>x.meterId)).size!==out.length)throw new Error('Ein Zähler wurde mehrfach ausgewählt. Bitte doppelte Smart-me-Dateien entfernen.');
+  return out;
  }
- customers.forEach(c=>{const b=document.createElement('button');b.type='button';b.className='demo-customer';b.dataset.id=c.id;b.setAttribute('aria-pressed','false');b.innerHTML='<span><b>'+c.name+'</b><small>'+c.unit+' · '+kwh(c.kwh)+'</small></span><strong>'+chf(amount(c)+8)+'</strong>';b.addEventListener('click',()=>{show(c);progress.textContent='Beispielrechnung für '+c.name+' angezeigt.'});list.appendChild(b)});
- go.addEventListener('click',()=>{started=true;go.disabled=true;go.textContent='Demo läuft …';progress.textContent='1/3 · Messwerte der Musterliegenschaft werden zusammengestellt …';setTimeout(()=>{progress.textContent='2/3 · Beispieltarife werden angewendet …';setTimeout(()=>{show(customers.find(c=>c.id===selected)||customers[0]);progress.textContent='3/3 · Fertig! Wählen Sie links einen Bezüger, um die Einzelrechnung anzusehen.';go.disabled=false;go.textContent='↻ Demo erneut starten'},450)},450)});
+ function renderRows(){rowsBox.innerHTML='<div class="small muted">'+imported.length+' Datei(en) erkannt · Namen können vor der Berechnung angepasst werden.</div>'+imported.map((r,i)=>'<div class="smartme-file-row"><div><b>'+safe(r.name)+'</b><small>Zähler '+safe(r.meterId)+' · '+safe(r.fileName)+'</small></div><input aria-label="Bezügername '+(i+1)+'" data-name-index="'+i+'" value="'+safe(r.name)+'"><strong>'+number(r.kwh)+' kWh</strong></div>').join('');rowsBox.querySelectorAll('[data-name-index]').forEach(el=>el.addEventListener('input',()=>{imported[Number(el.dataset.nameIndex)].name=el.value;}));}
+ function importFiles(files){status.textContent='Dateien werden geprüft …';status.className='demo-progress';parseFiles([...files]).then(data=>{imported=data;calculated=[];renderRows();periodBox.textContent='Abrechnungsperiode: '+data[0].period+' · '+data.length+' Zählerdatei(en)';status.textContent='✓ '+data.length+' Datei(en) erfolgreich geprüft · '+number(data.reduce((a,x)=>a+x.kwh,0))+' kWh Gesamtverbrauch';status.className='demo-progress smartme-ok';results.innerHTML='<div class="demo-placeholder">Dateien erkannt. Geben Sie Ihre Tarife ein und klicken Sie auf «CHF-Beträge berechnen».</div>';csvBtn.disabled=true;totalBox.querySelector('strong').textContent=money(0);}).catch(e=>{imported=[];calculated=[];status.textContent='Import nicht möglich';status.className='demo-progress smartme-error';rowsBox.innerHTML='<div class="smartme-error">'+safe(e.message)+'</div>';results.innerHTML='<div class="demo-placeholder">Bitte korrigieren Sie die Datei-Auswahl.</div>';periodBox.textContent='Kein gültiger Zeitraum';csvBtn.disabled=true;});}
+ input.addEventListener('change',()=>importFiles(input.files));
+ ['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('dragover');}));['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('dragover');}));drop.addEventListener('drop',e=>{const fs=[...e.dataTransfer.files].filter(f=>/\.xlsx?$/i.test(f.name));if(!fs.length){status.textContent='Bitte Smart-me-Dateien im Excel-Format .xlsx oder .xls ablegen.';status.className='demo-progress smartme-error';return;}importFiles(fs);});
+ function calculate(){
+  if(!imported.length){status.textContent='Bitte zuerst Smart-me-Dateien importieren.';status.className='demo-progress smartme-error';return;}
+  const grid=Number(document.getElementById('testGridRate').value),solar=Number(document.getElementById('testSolarRate').value),share=Number(document.getElementById('testSolarShare').value),rent=Number(document.getElementById('testMeterRent').value),discount=Number(document.getElementById('testDiscount').value);
+  if([grid,solar,share,rent,discount].some(n=>!Number.isFinite(n)||n<0)||share>100||discount>100){status.textContent='Bitte gültige Tarife eingeben. Solarstromanteil und Rabatt müssen zwischen 0 und 100 % liegen.';status.className='demo-progress smartme-error';return;}
+  const r2=n=>Math.round((Number(n)+Number.EPSILON)*100)/100;
+  calculated=imported.map(r=>{const kwh=r2(r.kwh),solarKwh=r2(kwh*share/100),gridKwh=r2(kwh-solarKwh),solarAmt=r2(solarKwh*solar/100),gridAmt=r2(gridKwh*grid/100),energy=r2(gridAmt+solarAmt),discountAmt=r2(energy*discount/100),total=r2(Math.max(0,energy-discountAmt)+rent);return {...r,kwh,solarKwh,gridKwh,solarAmt,gridAmt,energy,discountAmt,rent:r2(rent),total};});
+  const sum=key=>calculated.reduce((a,x)=>a+x[key],0);totalBox.querySelector('strong').textContent=money(sum('total'));
+  results.innerHTML='<div class="smartme-table-wrap"><table class="smartme-table"><thead><tr><th>Bezüger / Zähler</th><th>Verbrauch</th><th>Solarstrom</th><th>Netzstrom</th><th>Energiekosten</th><th>Rabatt</th><th>Zählermiete</th><th>Total CHF</th></tr></thead><tbody>'+calculated.map(r=>'<tr><td><b>'+safe(r.name)+'</b><br><small>'+safe(r.meterId)+'</small></td><td>'+number(r.kwh)+' kWh</td><td>'+number(r.solarKwh)+' kWh<br>'+money(r.solarAmt)+'</td><td>'+number(r.gridKwh)+' kWh<br>'+money(r.gridAmt)+'</td><td>'+money(r.energy)+'</td><td>− '+money(r.discountAmt)+'</td><td>'+money(r.rent)+'</td><td><b>'+money(r.total)+'</b></td></tr>').join('')+'</tbody><tfoot><tr><th>Total</th><th>'+number(sum('kwh'))+' kWh</th><th>'+number(sum('solarKwh'))+' kWh<br>'+money(sum('solarAmt'))+'</th><th>'+number(sum('gridKwh'))+' kWh<br>'+money(sum('gridAmt'))+'</th><th>'+money(sum('energy'))+'</th><th>− '+money(sum('discountAmt'))+'</th><th>'+money(sum('rent'))+'</th><th>'+money(sum('total'))+'</th></tr></tfoot></table></div>';
+  status.textContent='✓ CHF-Berechnung mit den importierten Messwerten abgeschlossen.';status.className='demo-progress smartme-ok';csvBtn.disabled=false;
+ }
+ recalc.addEventListener('click',calculate);
+ csvBtn.addEventListener('click',()=>{if(!calculated.length)return;const cols=['Bezüger','Zählernummer','Zeitraum','Verbrauch kWh','Solarstrom kWh','Netzstrom kWh','Solarstrom CHF','Netzstrom CHF','Energiekosten CHF','Rabatt CHF','Zählermiete CHF','Total CHF'];const vals=calculated.map(r=>[r.name,r.meterId,r.period,r.kwh,r.solarKwh,r.gridKwh,r.solarAmt,r.gridAmt,r.energy,r.discountAmt,r.rent,r.total]);const csv='\uFEFF'+[cols,...vals].map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='SolarAbrechnung_'+(imported[0]?.period||'Test')+'.csv';a.click();URL.revokeObjectURL(url);});
+ ['testGridRate','testSolarRate','testSolarShare','testMeterRent','testDiscount'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{if(calculated.length)calculate();}));
 })();
 </script>
 <script>
