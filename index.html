@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <script>document.documentElement.classList.add("js")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Solarstromabrechnung in Sekunden: Smart-me-Daten importieren, Solar Manager anbinden und die Rechnung mit Schweizer QR-Zahlteil direkt erstellen.">
+<meta name="description" content="Solarstrom einfach abrechnen: Smart-me-Excel importieren, Solar-Manager-Daten übernehmen, QR-Rechnungen erstellen und Zahlungen im Blick behalten. Für Schweizer Liegenschaften und ZEV.">
 <meta name="theme-color" content="#123d35">
-<title>Solarstromabrechnung in Sekunden | Smart-me &amp; Solar Manager</title>
+<title>SolarAbrechnung.ch – Smart-me-Import, QR-Rechnungen &amp; Zahlungskontrolle</title>
 <link rel="canonical" href="https://marcoae-png.github.io/Solarabrechnung/">
 <link rel="alternate" hreflang="de-CH" href="https://marcoae-png.github.io/Solarabrechnung/">
 <link rel="alternate" hreflang="x-default" href="https://marcoae-png.github.io/Solarabrechnung/">
@@ -446,6 +446,26 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
 .api-note.warn{background:#fbf3df;border-color:#ecd9a6}
 .api-foot{font-size:12px;color:var(--muted);margin:22px 0 0}
 @media(max-width:900px){.api-grid{grid-template-columns:1fr}.api-side{position:static}}
+
+/* Interaktive Solar-Highlights */
+.solar-lab{background:linear-gradient(135deg,#f7f5ee,#edf4ef)}
+.lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.lab-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:27px;box-shadow:var(--shadow)}
+.lab-card h3{font:normal 27px Georgia,serif;color:var(--forest);margin:4px 0 8px}
+.lab-intro{color:var(--muted);font-size:14px;margin:0 0 22px}
+.lab-field{margin:17px 0}.lab-field label{display:flex;justify-content:space-between;gap:12px;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.lab-field output{color:var(--green);font-variant-numeric:tabular-nums}
+.lab-field input[type=range]{width:100%;accent-color:var(--green)}
+.lab-result{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.lab-metric{background:var(--mint);border-radius:14px;padding:15px}.lab-metric span{display:block;color:var(--muted);font-size:11px}.lab-metric strong{display:block;color:var(--forest);font-size:25px;line-height:1.35;font-variant-numeric:tabular-nums}
+.lab-note{font-size:11px;color:#75847d;margin:14px 0 0}
+.preview-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.live-dot{font-size:11px;color:#28785e;background:#e8f4ed;padding:6px 10px;border-radius:99px}
+.preview-kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.preview-kpi{padding:14px;border:1px solid var(--line);border-radius:13px}.preview-kpi small{display:block;color:var(--muted);font-size:11px}.preview-kpi b{font-size:23px;color:var(--forest)}
+.mini-chart{height:128px;display:flex;align-items:end;gap:8px;padding:14px 6px 0;border-bottom:1px solid var(--line);margin-top:18px}.mini-chart i{flex:1;display:block;border-radius:6px 6px 0 0;background:linear-gradient(180deg,#d5bd7f,#3c8b70);animation:growbar 1.1s ease both;transform-origin:bottom}.mini-chart i:nth-child(1){height:35%}.mini-chart i:nth-child(2){height:53%}.mini-chart i:nth-child(3){height:45%}.mini-chart i:nth-child(4){height:76%}.mini-chart i:nth-child(5){height:91%}.mini-chart i:nth-child(6){height:68%}.mini-chart i:nth-child(7){height:100%}.chart-labels{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;margin-top:7px}
+.lab-tag{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--green);font-weight:800}
+@keyframes growbar{from{transform:scaleY(.05)}to{transform:scaleY(1)}}
+@media(max-width:800px){.lab-grid{grid-template-columns:1fr}.lab-card{padding:21px}}
+
 </style>
 </head>
 <body>
@@ -458,7 +478,7 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
     </a>
     <button class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" onclick="toggleMenu()">☰</button>
     <nav class="navlinks" id="navlinks">
-      <a href="#vorteile" onclick="closeMenu()">Vorteile</a><a href="#funktionen" onclick="closeMenu()">Funktionen</a><a href="#ablauf" onclick="closeMenu()">So funktioniert's</a><a href="#preise" onclick="closeMenu()">Preise</a>
+      <a href="#vorteile" onclick="closeMenu()">Vorteile</a><a href="#funktionen" onclick="closeMenu()">Funktionen</a><a href="#solar-lab" onclick="closeMenu()">Sparrechner</a><a href="#ablauf" onclick="closeMenu()">So funktioniert's</a><a href="#preise" onclick="closeMenu()">Preise</a>
       <a href="https://marcoae-png.github.io/SolarAbrechnung-App/" target="_blank" rel="noopener">Kundenportal</a>
       <a class="btn btn-dark" href="#kontakt" onclick="closeMenu()">30-Tage-Testversion starten <span>→</span></a>
     </nav>
@@ -475,11 +495,11 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
  </svg>
  <div class="container hero-grid">
   <div>
-   <div class="eyebrow">Smart-me-Import + Solar-Manager-Anbindung</div>
-   <h1>Smart-me importieren. <em>Rechnung in Sekunden.</em></h1>
-   <p class="hero-copy">Die Smart-me-Daten Ihrer Bezüger einlesen, die Solar-Manager-Kennzahlen werden automatisch angebunden – und die fertige Rechnung mit Schweizer QR-Zahlteil entsteht direkt daraus. Für Mehrfamilienhäuser und Eigenverbrauchsgemeinschaften (ZEV).</p>
-   <div class="hero-actions"><a class="btn btn-primary" href="#kontakt">30-Tage-Testversion starten <span>→</span></a><a class="btn btn-outline" href="https://marcoae-png.github.io/SolarAbrechnung-App/" target="_blank" rel="noopener">Kundenportal öffnen</a></div>
-   <div class="trustline"><span><b class="check">✓</b> Rechnung direkt aus dem Import</span><span><b class="check">✓</b> Solar Manager angebunden</span><span><b class="check">✓</b> Schweizer QR-Rechnungen</span></div>
+   <div class="eyebrow">Die Abrechnungslösung für Schweizer Solar-Liegenschaften</div>
+   <h1>Solarstrom abrechnen. <em>Ohne Excel-Chaos.</em></h1>
+   <p class="hero-copy">Importieren Sie die Smart-me-Excel-Dateien Ihrer Bezüger, übernehmen Sie die Kennzahlen aus dem Solar Manager und erstellen Sie daraus nachvollziehbare Einzelrechnungen mit Schweizer QR-Zahlteil. Mit Rechnungsregister und Zahlungskontrolle – für Eigentümer, Verwaltungen und Solarteure.</p>
+   <div class="hero-actions"><a class="btn btn-primary" href="#kontakt">30-Tage-Testversion starten <span>→</span></a><a class="btn btn-outline" href="#demo">Ablauf live ansehen</a></div>
+   <div class="trustline"><span><b class="check">✓</b> Smart-me-Excel-Import</span><span><b class="check">✓</b> Solar-Manager-Anbindung</span><span><b class="check">✓</b> QR-Rechnung &amp; Rechnungsregister</span></div>
   </div>
   <div class="dashboard-wrap" aria-label="Illustrative Vorschau der Abrechnungsoberfläche">
    <div class="dashboard">
@@ -507,14 +527,14 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
 <section class="demo" id="demo">
  <div class="container demo-grid">
   <div>
-   <div class="section-head"><div class="kicker">Live ausprobieren</div><h2>Datei ablegen. Rechnung erhalten.</h2><p>Legen Sie eine Smart-me-Datei ab oder starten Sie mit Beispieldaten und sehen Sie den Ablauf.</p></div>
+   <div class="section-head"><div class="kicker">Interaktive Produktvorschau</div><h2>Sehen Sie den Ablauf in wenigen Sekunden.</h2><p>Wählen Sie eine Smart-me-Datei aus oder starten Sie direkt mit Beispieldaten. Die Vorschau zeigt den Ablauf – Ihre Datei wird dabei nicht verarbeitet.</p></div>
    <input type="file" id="demoFile" accept=".xlsx,.xls,.csv" hidden>
-   <button class="drop" id="drop" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>Smart-me-Datei hier ablegen<small>oder klicken zum Auswählen</small></button>
-   <div class="demo-actions"><button class="demo-link" id="demoGo" type="button">Mit Beispieldaten starten</button></div>
+   <button class="drop" id="drop" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>Datei für die Vorschau auswählen<small>oder hier ablegen · nur der Dateiname wird angezeigt</small></button>
+   <div class="demo-actions"><button class="demo-link" id="demoGo" type="button">Beispielablauf starten</button></div>
    <ol class="dsteps" id="dsteps" aria-live="polite">
-    <li><span class="dot"></span><span>Smart-me-Datei einlesen</span></li>
-    <li><span class="dot"></span><span>Solar-Manager-Daten abrufen</span></li>
-    <li><span class="dot"></span><span>Rechnung mit QR-Zahlteil erstellen</span></li>
+    <li><span class="dot"></span><span>Smart-me-Datei auswählen</span></li>
+    <li><span class="dot"></span><span>Solar-Manager-Schritt simulieren</span></li>
+    <li><span class="dot"></span><span>Beispielrechnung mit QR-Zahlteil anzeigen</span></li>
    </ol>
    <div class="timer" id="dtimer"></div>
   </div>
@@ -528,14 +548,14 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
     <div class="qr" data-r><i></i><span>Schweizer QR-Zahlteil mit Empfangsschein – bereit zum Drucken, als PDF oder per E-Mail.</span></div>
     <div class="veil" id="veil">Hier erscheint Ihre Rechnung</div>
    </div>
-   <p class="demo-note">Simulation mit Beispieldaten. Ihre Datei wird weder gelesen noch hochgeladen.</p>
+   <p class="demo-note">Nur eine Vorschau mit Beispieldaten: Die ausgewählte Datei wird nicht geöffnet, ausgewertet oder hochgeladen. Die echte Abrechnung erfolgt anschliessend im Kundenportal.</p>
   </div>
  </div>
 </section>
 
 <section class="section" id="vorteile">
  <div class="container">
-  <div class="section-head"><div class="kicker">Für alle, die Solarstrom abrechnen</div><h2>Weniger Aufwand bei jeder Abrechnung.</h2><p>Ob einzelne Liegenschaft oder professionelle Betreuung: SolarAbrechnung.ch bündelt die wichtigsten Schritte in einem übersichtlichen Arbeitsablauf.</p></div>
+  <div class="section-head"><div class="kicker">Für alle, die Solarstrom abrechnen</div><h2>Weniger Handarbeit. Mehr Überblick.</h2><p>Die wiederkehrende Solarstromabrechnung wird übersichtlich: Messdaten übernehmen, Tarife anwenden, Rechnungen kontrollieren und offene Zahlungen im Blick behalten.</p></div>
   <div class="audience-grid">
    <article class="audience-card tile reveal"><div class="iconbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 10.5 12 3l9 7.5V21H3z"/><path d="M9 21v-7h6v7M7 10h.01M17 10h.01"/></svg></div><h3>Für Eigentümer</h3><p>Behalten Sie die Solarstromkosten Ihrer Liegenschaft im Griff und erstellen Sie nachvollziehbare Abrechnungen für Ihre Bezüger.</p></article>
    <article class="audience-card tile reveal"><div class="iconbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h4m-4 4h10M15 12h2"/></svg></div><h3>Für Verwaltungen</h3><p>Ein strukturierter Ablauf für den wiederkehrenden Abrechnungsprozess – mit Rechnungsregister und Bezügerübersicht.</p></article>
@@ -546,25 +566,52 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
 
 <section class="section section-soft" id="funktionen">
  <div class="container">
-  <div class="section-head"><div class="kicker">Die wichtigsten Funktionen</div><h2>Alles Wesentliche an einem Ort.</h2><p>Einfacher Datenimport und ein nachvollziehbarer Weg von den Messwerten bis zur fertigen Rechnung.</p></div>
+  <div class="section-head"><div class="kicker">Die wichtigsten Funktionen</div><h2>Vom Messwert bis zum Zahlungseingang.</h2><p>Die zentralen Arbeitsschritte für Ihre Solarstromabrechnung sind in einem einzigen, klaren Ablauf gebündelt.</p></div>
   <div class="features-grid">
-   <article class="feature tile reveal"><div class="iconbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 16V3m0 0L7 8m5-5 5 5"/><path d="M4 14v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></svg></div><h3>Smart-me-Import</h3><p>Mehrere Smart-me-Excel-Exporte für dasselbe Quartal auswählen – die Rechnungen entstehen direkt aus dem Import, in Sekunden.</p></article>
-   <article class="feature tile reveal"><div class="iconbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg></div><h3>Solar-Manager-Daten</h3><p>Solar-Manager-Kennzahlen werden über die API automatisch abgerufen und fliessen direkt in die Rechnung ein.</p></article>
+   <article class="feature tile reveal"><div class="iconbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 16V3m0 0L7 8m5-5 5 5"/><path d="M4 14v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></svg></div><h3>Smart-me-Import</h3><p>Mehrere Smart-me-Excel-Exporte für dasselbe Quartal auswählen und die Messwerte als Grundlage für die Bezügerrechnungen übernehmen.</p></article>
+   <article class="feature tile reveal"><div class="iconbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg></div><h3>Solar-Manager-Daten</h3><p>Die benötigten Solar-Manager-Kennzahlen werden über die API abgerufen und in den Abrechnungsprozess übernommen.</p></article>
    <article class="feature tile reveal"><div class="iconbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h16v14H4zM8 9h8M8 13h5M8 16h3"/></svg></div><h3>Flexible Tarife</h3><p>Netzstrom- und Solarstrompreis pro kWh definieren sowie eine prozentuale Reduktion oder einen Pauschalabzug festlegen.</p></article>
    <article class="feature tile reveal"><div class="iconbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 3h10l4 4v14H5z"/><path d="M14 3v5h5M8 13h8m-8 4h8"/></svg></div><h3>Rechnungen mit QR-Zahlteil</h3><p>Für jeden importierten Bezüger eine separate Rechnung im HTML-Format erstellen – mit Schweizer QR-Zahlteil.</p></article>
-   <article class="feature tile reveal"><div class="iconbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 4h18v16H3z"/><path d="M7 8h10M7 12h10M7 16h5"/></svg></div><h3>Rechnungsregister</h3><p>Gespeicherte Rechnungen nach Quartal gruppieren, nach Bezüger filtern und erneut öffnen.</p></article>
+   <article class="feature tile reveal"><div class="iconbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 4h18v16H3z"/><path d="M7 8h10M7 12h10M7 16h5"/></svg></div><h3>Rechnungsregister</h3><p>Gespeicherte Rechnungen nach Quartal gruppieren, wieder öffnen, drucken und bei Bedarf erneut per E-Mail bereitstellen.</p></article>
    <article class="feature tile reveal"><div class="iconbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></div><h3>E-Mail-Versand</h3><p>Rechnungen über ein eingerichtetes SMTP-Versandkonto per E-Mail verschicken.</p></article>
+   <article class="feature tile reveal"><div class="iconbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 12.5 9.2 17 19 7"/><path d="M4 3h16v18H4z"/></svg></div><h3>Abrechnungs-Check</h3><p>Vor dem Speichern auf fehlende Adressen, fehlende Verbrauchswerte und auffällige Rechnungsbeträge hinweisen lassen.</p></article>
+   <article class="feature tile reveal"><div class="iconbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2M7 3 4 6M17 3l3 3"/></svg></div><h3>Zahlungskontrolle</h3><p>Rechnungen als offen oder bezahlt markieren, überfällige Beträge erkennen und Zahlungserinnerungen vorbereiten.</p></article>
+  </div>
+ </div>
+</section>
+
+
+<section class="section solar-lab" id="solar-lab">
+ <div class="container">
+  <div class="section-head"><div class="kicker">Jetzt selbst ausprobieren</div><h2>Was steckt in Ihrer Solaranlage?</h2><p>Mit wenigen Angaben erhalten Sie eine erste, unverbindliche Beispielrechnung – direkt im Browser und ohne Registrierung.</p></div>
+  <div class="lab-grid">
+   <article class="lab-card">
+    <div class="lab-tag">☀️ Solar-Sparrechner</div><h3>Ihr mögliches Sparpotenzial</h3><p class="lab-intro">Passen Sie die Werte an Ihre Liegenschaft an.</p>
+    <div class="lab-field"><label for="lab-power">Anlagengrösse <output id="lab-power-out">12 kWp</output></label><input id="lab-power" type="range" min="3" max="40" step="1" value="12"></div>
+    <div class="lab-field"><label for="lab-self">Eigenverbrauch <output id="lab-self-out">35 %</output></label><input id="lab-self" type="range" min="10" max="90" step="5" value="35"></div>
+    <div class="lab-field"><label for="lab-price">Strompreis <output id="lab-price-out">CHF 0.28/kWh</output></label><input id="lab-price" type="range" min="15" max="45" step="1" value="28"></div>
+    <div class="lab-result"><div class="lab-metric"><span>Geschätzte Jahresproduktion</span><strong id="lab-production">11’400 kWh</strong></div><div class="lab-metric"><span>Wert des selbst genutzten Stroms</span><strong id="lab-savings">CHF 1’117</strong></div></div>
+    <p class="lab-note">Modellrechnung mit 950 kWh Jahresproduktion pro kWp. Ohne Einspeisevergütung, Grundgebühren oder individuelle Tarifdetails. Keine Ertrags- oder Einspargarantie.</p>
+   </article>
+   <article class="lab-card">
+    <div class="preview-head"><div><div class="lab-tag">Dashboard-Vorschau</div><h3 style="margin-bottom:0">Ihre Energie im Blick</h3></div><span class="live-dot">● Beispielansicht</span></div>
+    <p class="lab-intro">So übersichtlich lassen sich Solarproduktion und Verbrauch darstellen.</p>
+    <div class="preview-kpis"><div class="preview-kpi"><small>Produktion heute</small><b>38.6 kWh</b></div><div class="preview-kpi"><small>Eigenverbrauch</small><b>72 %</b></div><div class="preview-kpi"><small>Ins Netz eingespeist</small><b>10.8 kWh</b></div><div class="preview-kpi"><small>CO₂ vermieden</small><b>18.2 kg</b></div></div>
+    <div class="mini-chart" role="img" aria-label="Illustrativer Verlauf der Solarproduktion über sieben Tage"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="chart-labels"><span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span></div>
+    <p class="lab-note">Die angezeigten Dashboard-Werte und Balken sind illustrative Beispieldaten, keine Live-Messwerte.</p>
+   </article>
   </div>
  </div>
 </section>
 
 <section class="section" id="ablauf">
  <div class="container">
-  <div class="section-head"><div class="kicker">Ein klarer Ablauf</div><h2>Vom Import zur Rechnung in Sekunden.</h2><p>Kein Abtippen, keine Zwischenschritte: Die Rechnung entsteht direkt aus dem Smart-me-Import und den Solar-Manager-Daten.</p></div>
+  <div class="section-head"><div class="kicker">Ein klarer Ablauf</div><h2>Ein klarer Ablauf statt vieler Einzelschritte.</h2><p>Die Daten werden importiert und zusammengeführt. Sie behalten Tarife, Rechnungen und Zahlungsstatus an einem Ort im Blick.</p></div>
   <div class="process">
    <div class="step tile reveal"><h3>Smart-me importieren</h3><p>Die Smart-me-Excel-Dateien der Bezüger für das gewünschte Quartal auswählen.</p></div>
-   <div class="step tile reveal"><h3>Solar Manager anbinden</h3><p>Die Solar-Manager-Daten werden automatisch abgerufen. Dazu Netzstrom, Solarstrom und eine allfällige Reduktion festlegen.</p></div>
-   <div class="step tile reveal"><h3>Rechnung in Sekunden</h3><p>Die Rechnungen werden direkt erstellt, im Register kontrolliert und als PDF ausgegeben oder per E-Mail versendet.</p></div>
+   <div class="step tile reveal"><h3>Solar Manager anbinden</h3><p>Die Solar-Manager-Kennzahlen werden über die API abgerufen. Anschliessend Netzstrom, Solarstrom und eine allfällige Reduktion festlegen.</p></div>
+   <div class="step tile reveal"><h3>Rechnung prüfen &amp; ausgeben</h3><p>Kontrollieren Sie die Angaben, erstellen Sie Einzelrechnungen mit QR-Zahlteil und geben Sie diese als PDF aus oder versenden Sie sie per E-Mail.</p></div>
+    <div class="step tile reveal"><h3>Zahlungen im Blick behalten</h3><p>Markieren Sie Rechnungen als bezahlt, sehen Sie offene und überfällige Beträge und bereiten Sie bei Bedarf eine Zahlungserinnerung vor.</p></div>
   </div>
  </div>
 </section>
@@ -654,14 +701,14 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
 
 <section class="section" id="preise">
  <div class="container">
-  <div class="section-head"><div class="kicker">Einfaches Preismodell</div><h2>Ein Jahresabo pro Liegenschaft.</h2><p>Eine klare Zuordnung der Kosten – ohne komplizierte Lizenzmodelle pro Benutzer.</p></div>
+  <div class="section-head"><div class="kicker">Einfaches Preismodell</div><h2>Einfach kalkulierbar: pro Liegenschaft.</h2><p>Ein Jahresabo mit klarer Zuordnung der Kosten – statt komplizierter Lizenzmodelle pro Benutzer.</p></div>
   <div class="pricing">
    <div class="pricing-top"><div class="kicker">Für eine Liegenschaft</div><h3>SolarAbrechnung Jahresabo</h3><p>Die Abrechnungslösung für Eigentümer, Verwaltungen und Solarteure.</p></div>
    <div class="pricing-body">
     <div class="price-line"><div><strong>Jährliche Lizenz</strong><br><span>Pro Liegenschaft · Jahresabo</span></div><span style="font-weight:700;color:var(--green)">CHF 59.– / Jahr</span></div>
-    <ul><li>Smart-me-Import</li><li>Solar-Manager-Anbindung</li><li>Tarif- und Reduktionsverwaltung</li><li>Rechnungen mit QR-Zahlteil</li><li>Rechnungsregister</li><li>E-Mail-Versand bei Einrichtung</li></ul>
+    <ul><li>Smart-me-Import</li><li>Solar-Manager-Anbindung</li><li>Tarif- und Reduktionsverwaltung</li><li>Rechnungen mit QR-Zahlteil</li><li>Rechnungsregister</li><li>Abrechnungs-Check</li><li>Zahlungskontrolle &amp; Mahnübersicht</li><li>E-Mail-Versand bei Einrichtung</li></ul>
     <a class="btn btn-dark" href="#kontakt" style="width:100%">30-Tage-Testversion starten <span>→</span></a>
-    <p class="pricing-note">Der konkrete Preis und der Leistungsumfang werden vor Veröffentlichung bzw. Vertragsabschluss festgelegt. Mehrere Liegenschaften können separat angefragt werden.</p>
+    <p class="pricing-note">CHF 59.– pro Jahr und Liegenschaft. Für mehrere Liegenschaften können individuelle Konditionen angefragt werden.</p>
    </div>
   </div>
  </div>
@@ -700,6 +747,8 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
    <details><summary>Kann ich die Rechnungen als PDF versenden?</summary><p>Die Rechnungen können im Browser geöffnet und als PDF gedruckt bzw. gespeichert werden. Ein E-Mail-Versand ist mit eingerichtetem SMTP-Mailserver vorgesehen.</p></details>
    <details><summary>Ist die Lösung für mehrere Liegenschaften geeignet?</summary><p>Das vorgesehene Geschäftsmodell ist ein Jahresabo pro Liegenschaft. Wie mehrere Liegenschaften technisch und organisatorisch eingerichtet werden, wird im persönlichen Gespräch geklärt.</p></details>
    <details><summary>Ist die Software bereits für alle Schweizer Abrechnungsmodelle geeignet?</summary><p>Die aktuelle Anwendung bildet den beschriebenen Import- und Abrechnungsablauf ab. Die Eignung für konkrete Modelle und regulatorische Anforderungen – beispielsweise ZEV, vZEV oder LEG – muss vor dem Einsatz im jeweiligen Fall geprüft werden.</p></details>
+   <details><summary>Verarbeitet die interaktive Vorschau meine Smart-me-Datei?</summary><p>Nein. Die Vorschau zeigt einen Beispielablauf mit Beispieldaten. Eine ausgewählte Datei wird nicht geöffnet, ausgewertet oder hochgeladen. Für echte Abrechnungen verwenden Sie das Kundenportal.</p></details>
+   <details><summary>Werden Zahlungseingänge automatisch mit meiner Bank abgeglichen?</summary><p>Nein. Sie markieren Rechnungen im Rechnungsregister manuell als offen oder bezahlt. Die Anwendung zeigt offene und überfällige Beträge an und kann einen Zahlungserinnerungs-Entwurf für Ihr E-Mail-Programm vorbereiten.</p></details>
   </div>
  </div>
 </section>
@@ -707,10 +756,10 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
 <section class="cta" id="kontakt">
  <div class="container cta-inner">
   <div class="kicker">Lernen Sie SolarAbrechnung.ch kennen</div>
-  <h2>Ihre Solarabrechnung darf einfacher sein.</h2>
-  <p>Sie möchten wissen, ob SolarAbrechnung.ch zu Ihrer Liegenschaft oder zu Ihrem Kundenangebot passt? Fragen Sie eine unverbindliche Produktdemo und die Konditionen für ein Jahresabo an.</p>
-  <div class="contact-box"><a class="btn btn-dark" href="mailto:marco.aebersold@bluewin.ch?subject=Demo%20SolarAbrechnung.ch">Demo per E-Mail anfragen <span>→</span></a></div>
-  <div class="contact-hint">Vor der Veröffentlichung bitte die Kontaktadresse im HTML ersetzen.</div>
+  <h2>Bereit für eine einfachere Solarabrechnung?</h2>
+  <p>Starten Sie Ihre 30-Tage-Testversion und prüfen Sie den Ablauf mit Ihren Anforderungen. Der Einstieg erfolgt direkt über das Kundenportal.</p>
+  <div class="contact-box"><a class="btn btn-dark" href="https://marcoae-png.github.io/SolarAbrechnung-App/">30-Tage-Testversion starten <span>→</span></a><a class="btn btn-outline" href="mailto:marco.aebersold@bluewin.ch?subject=Frage%20zu%20SolarAbrechnung.ch">Persönliche Frage stellen</a></div>
+  <div class="contact-hint">Die Testversion wird über das Kundenportal gestartet. Sie möchten mehrere Liegenschaften abrechnen? Schreiben Sie uns.</div>
  </div>
 </section>
 </main>
@@ -827,5 +876,24 @@ document.querySelectorAll('.feature').forEach(function(c){c.addEventListener('po
  if('IntersectionObserver' in window){new IntersectionObserver(function(es){seen=es[0].isIntersecting;if(seen){show(cur)}pause(userPaused||!seen)},{threshold:.4}).observe(sp)}else{seen=true;pause(false)}
 })();
 </script>
+
+<script>
+(function(){
+ const power=document.getElementById('lab-power'), self=document.getElementById('lab-self'), price=document.getElementById('lab-price');
+ if(!power||!self||!price)return;
+ const fmt=n=>Math.round(n).toLocaleString('de-CH');
+ function update(){
+  const p=Number(power.value), s=Number(self.value), r=Number(price.value)/100;
+  const production=p*950, own=production*s/100, savings=own*r;
+  document.getElementById('lab-power-out').textContent=p+' kWp';
+  document.getElementById('lab-self-out').textContent=s+' %';
+  document.getElementById('lab-price-out').textContent='CHF '+r.toFixed(2)+'/kWh';
+  document.getElementById('lab-production').textContent=fmt(production)+' kWh';
+  document.getElementById('lab-savings').textContent='CHF '+fmt(savings);
+ }
+ [power,self,price].forEach(el=>el.addEventListener('input',update)); update();
+})();
+</script>
+
 </body>
 </html>
