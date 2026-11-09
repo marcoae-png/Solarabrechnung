@@ -544,6 +544,16 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
   .footer-grid { grid-template-columns: 1fr; }
   .footer-grid > div:first-child { grid-column: auto; }
 }
+
+.demo-toolbar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 20px;margin:24px 0 16px;background:#fff;border:1px solid #e5eaf0;border-radius:16px;box-shadow:0 8px 24px rgba(20,40,60,.06)}
+.demo-toolbar>div{display:grid;gap:4px}.demo-toolbar span{font-size:13px;color:#64748b}
+.demo-workspace{display:grid;grid-template-columns:minmax(250px,.8fr) minmax(0,1.2fr);gap:18px;align-items:start}
+.demo-panel{background:#fff;border:1px solid #e5eaf0;border-radius:16px;padding:20px;min-width:0;box-shadow:0 8px 24px rgba(20,40,60,.05)}
+.demo-panel h3{margin:0 0 7px;font-size:18px}.demo-panel p{margin:0 0 14px}
+.demo-customers{display:grid;gap:9px}.demo-customer{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;padding:13px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;color:#183047;cursor:pointer}.demo-customer[aria-pressed=true]{border-color:#15956f;background:#effaf5;box-shadow:inset 0 0 0 1px #15956f}.demo-customer span{display:grid;gap:3px}.demo-customer small{color:#64748b}.demo-customer strong{white-space:nowrap}.demo-progress{margin-top:14px;padding:11px 12px;border-radius:10px;background:#f1f5f9;color:#475569;font-size:13px;min-height:42px}
+.demo-invoice{border:1px solid #e5eaf0;border-radius:12px;padding:18px;min-height:310px;color:#183047}.demo-placeholder{min-height:270px;display:grid;place-items:center;text-align:center;color:#64748b}.di-head{display:flex;justify-content:space-between;gap:12px;padding-bottom:15px;border-bottom:2px solid #e5eaf0}.di-head b{display:block;font-size:21px}.di-head small,.di-muted{color:#64748b}.di-address{padding:14px 0;font-size:13px}.di-line{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #edf1f5;font-size:13px}.di-line span:first-child{min-width:0}.di-total{display:flex;justify-content:space-between;padding:14px 0;font-size:18px;font-weight:800}.di-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.di-facts div{background:#f5f8fa;border-radius:9px;padding:10px}.di-facts small{display:block;color:#64748b;font-size:10px}.di-facts b{font-size:13px}.di-qr{display:flex;gap:12px;align-items:center;border-top:1px dashed #cbd5e1;padding-top:14px;margin-top:8px;font-size:11px;color:#64748b}.di-qrmark{width:76px;height:76px;flex:0 0 76px;background:repeating-conic-gradient(#183047 0 25%,#fff 0 50%) 0/10px 10px;border:7px solid #fff;outline:1px solid #cbd5e1}.demo-note{font-size:12px;color:#64748b;margin:14px 0 0}
+@media(max-width:760px){.demo-workspace{grid-template-columns:1fr}.demo-toolbar{align-items:stretch;flex-direction:column}.demo-toolbar .btn{width:100%}.demo-invoice{padding:13px}.di-facts{grid-template-columns:1fr 1fr 1fr}}
+
 </style>
 </head>
 <body>
@@ -603,31 +613,14 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
 <div class="strip"><div class="container"><span>Funktioniert mit</span><span>Smart-me</span><span>Solar Manager</span><span>Excel-Import (.xlsx)</span><span>QR-Rechnung</span><span>PDF &amp; E-Mail</span></div></div>
 
 <section class="demo" id="demo">
- <div class="container demo-grid">
-  <div>
-   <div class="section-head"><div class="kicker">Interaktive Produktvorschau</div><h2>Sehen Sie den Ablauf in wenigen Sekunden.</h2><p>Wählen Sie eine Smart-me-Datei aus oder starten Sie direkt mit Beispieldaten. Die Vorschau zeigt den Ablauf – Ihre Datei wird dabei nicht verarbeitet.</p></div>
-   <input type="file" id="demoFile" accept=".xlsx,.xls,.csv" hidden>
-   <button class="drop" id="drop" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0L7 9m5-5 5 5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>Datei für die Vorschau auswählen<small>oder hier ablegen · nur der Dateiname wird angezeigt</small></button>
-   <div class="demo-actions"><button class="demo-link" id="demoGo" type="button">Beispielablauf starten</button></div>
-   <ol class="dsteps" id="dsteps" aria-live="polite">
-    <li><span class="dot"></span><span>Smart-me-Datei auswählen</span></li>
-    <li><span class="dot"></span><span>Solar-Manager-Schritt simulieren</span></li>
-    <li><span class="dot"></span><span>Beispielrechnung mit QR-Zahlteil anzeigen</span></li>
-   </ol>
-   <div class="timer" id="dtimer"></div>
+ <div class="container">
+  <div class="section-head"><div class="kicker">Interaktive Produktvorschau · lokale Beispieldaten</div><h2>Sehen Sie den Ablauf in wenigen Sekunden.</h2><p>Starten Sie die Demo und erleben Sie den Ablauf mit einer Musterliegenschaft und drei Bezügern. Sie können jede Beispielrechnung öffnen und die Verbrauchs- und Tarifwerte nachvollziehen.</p></div>
+  <div class="demo-toolbar"><div><b>Musterliegenschaft Sonnenhof</b><span>Abrechnungsperiode Q3 2026 · 3 Bezüger · alle Angaben sind Beispieldaten</span></div><button class="btn btn-primary" id="demoGo" type="button">▶ Demo starten</button></div>
+  <div class="demo-workspace">
+   <div class="demo-panel"><h3>1. Bezüger auswählen</h3><p class="small muted">Wählen Sie eine Person, um deren Beispielrechnung anzuzeigen.</p><div id="demoCustomers" class="demo-customers"></div><div class="demo-progress" id="demoProgress" aria-live="polite">Bereit für den Beispielablauf.</div></div>
+   <div class="demo-panel"><h3>2. Beispielrechnung</h3><div id="demoInvoice" class="demo-invoice"><div class="demo-placeholder">Starten Sie die Demo, um eine Beispielrechnung zu sehen.</div></div></div>
   </div>
-  <div>
-   <div class="inv" id="inv">
-    <div class="inv-top" data-r><div><span>Stromabrechnung</span><br><b>Rechnung</b></div><div style="text-align:right"><span>Nr. 2026Q1-DEMO</span><br><span>Q1 2026 · Beispiel</span></div></div>
-    <div class="row" data-r><span>Netzstrom<small>Gesamtbezug abzüglich Solarstrom</small></span><span>5’168.75 kWh</span><span>CHF 1’142.29</span></div>
-    <div class="row" data-r><span>Solarstrom<small>27.1 % günstiger</small></span><span>2’400.53 kWh</span><span>CHF 386.49</span></div>
-    <div class="row" data-r><span>Zählermiete</span><span></span><span>CHF 8.00</span></div>
-    <div class="total" data-r><span>Zu bezahlen</span><b id="dtotal">CHF 1’536.78</b></div>
-    <div class="qr" data-r><i></i><span>Schweizer QR-Zahlteil mit Empfangsschein – bereit zum Drucken, als PDF oder per E-Mail.</span></div>
-    <div class="veil" id="veil">Hier erscheint Ihre Rechnung</div>
-   </div>
-   <p class="demo-note">Nur eine Vorschau mit Beispieldaten: Die ausgewählte Datei wird nicht geöffnet, ausgewertet oder hochgeladen. Die echte Abrechnung erfolgt anschliessend im Kundenportal.</p>
-  </div>
+  <p class="demo-note">Diese Vorschau läuft vollständig lokal mit festen Beispieldaten. Es werden keine Dateien eingelesen, keine Firebase-Daten verändert und keine echten Rechnungen oder E-Mails erstellt. Der QR-Zahlteil ist eine nicht zahlbare Musterillustration.</p>
  </div>
 </section>
 
@@ -909,32 +902,30 @@ document.querySelectorAll('.feature').forEach(function(c){c.addEventListener('po
 </script>
 <script>
 (function(){
- var drop=document.getElementById('drop'),file=document.getElementById('demoFile'),go=document.getElementById('demoGo'),
-  steps=[].slice.call(document.querySelectorAll('#dsteps li')),inv=document.getElementById('inv'),timer=document.getElementById('dtimer'),
-  rows=[].slice.call(inv.querySelectorAll('[data-r]')),tot=document.getElementById('dtotal'),busy=false,
-  reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
- function wait(ms){return new Promise(function(r){setTimeout(r,reduce?0:ms)})}
- function fmt(v){return 'CHF '+v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,'’')}
- function count(){return new Promise(function(res){if(reduce){tot.textContent=fmt(1536.78);return res()}var t0=null;(function f(t){if(!t0)t0=t;var p=Math.min((t-t0)/600,1);tot.textContent=fmt(1536.78*(1-Math.pow(1-p,3)));p<1?requestAnimationFrame(f):res()})(performance.now())})}
- async function run(name){
-  if(busy)return;busy=true;
-  steps.forEach(function(s){s.className=''});rows.forEach(function(r){r.classList.remove('on')});inv.classList.remove('ready');
-  steps[0].lastElementChild.textContent=name?'Datei «'+name+'» einlesen':'Smart-me-Datei einlesen';
-  var t0=performance.now(),iv=setInterval(function(){timer.textContent=((performance.now()-t0)/1000).toFixed(1)+' s …'},100);
-  steps[0].className='run';await wait(450);steps[0].className='done';
-  steps[1].className='run';await wait(550);steps[1].className='done';
-  steps[2].className='run';inv.classList.add('ready');
-  for(var i=0;i<rows.length;i++){rows[i].classList.add('on');if(rows[i].classList.contains('total'))await count();else await wait(130)}
-  steps[2].className='done';clearInterval(iv);
-  timer.textContent='Fertig in '+((performance.now()-t0)/1000).toFixed(1)+' Sekunden (Beispielablauf)';
-  busy=false;
+ const customers=[
+  {id:'m1',name:'Familie Meier',unit:'Wohnung 1 · 1. OG',kwh:1240,solar:372,grid:868,solarRate:.18,gridRate:.28},
+  {id:'m2',name:'Lea Müller',unit:'Wohnung 2 · 2. OG',kwh:980,solar:294,grid:686,solarRate:.18,gridRate:.28},
+  {id:'m3',name:'Daniel Keller',unit:'Wohnung 3 · DG',kwh:1560,solar:468,grid:1092,solarRate:.18,gridRate:.28}
+ ];
+ const list=document.getElementById('demoCustomers'),invoice=document.getElementById('demoInvoice'),go=document.getElementById('demoGo'),progress=document.getElementById('demoProgress');
+ if(!list||!invoice||!go||!progress)return;
+ const chf=n=>'CHF '+n.toLocaleString('de-CH',{minimumFractionDigits:2,maximumFractionDigits:2});
+ const kwh=n=>n.toLocaleString('de-CH',{maximumFractionDigits:0})+' kWh';
+ let selected='m1',started=false;
+ function amount(c){return c.solar*c.solarRate+c.grid*c.gridRate;}
+ function show(c){selected=c.id;list.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===selected?'true':'false'));
+  const total=amount(c),solarCost=c.solar*c.solarRate,gridCost=c.grid*c.gridRate;
+  invoice.innerHTML='<div class="di-head"><div><small>SolarAbrechnung.ch · MUSTER</small><b>Rechnung</b><span class="di-muted">Musterliegenschaft Sonnenhof</span></div><div style="text-align:right"><b style="font-size:15px">2026Q3-'+c.id.toUpperCase()+'</b><small>Q3 2026 · Beispiel</small></div></div>'+
+   '<div class="di-address"><b>'+c.name+'</b><br>'+c.unit+'<br>3000 Bern · Musteradresse</div>'+
+   '<div class="di-facts"><div><small>Gesamtverbrauch</small><b>'+kwh(c.kwh)+'</b></div><div><small>Solarstromanteil</small><b>'+kwh(c.solar)+'</b></div><div><small>Netzstrom</small><b>'+kwh(c.grid)+'</b></div></div>'+
+   '<div class="di-line"><span>Solarstrom · '+kwh(c.solar)+' × '+chf(c.solarRate)+'</span><b>'+chf(solarCost)+'</b></div>'+
+   '<div class="di-line"><span>Netzstrom · '+kwh(c.grid)+' × '+chf(c.gridRate)+'</span><b>'+chf(gridCost)+'</b></div>'+
+   '<div class="di-line"><span>Zählermiete</span><b>'+chf(8)+'</b></div>'+
+   '<div class="di-total"><span>Total zu bezahlen</span><span>'+chf(total+8)+'</span></div>'+
+   '<div class="di-qr"><div class="di-qrmark" aria-hidden="true"></div><div><b>Muster-QR-Zahlteil</b><br>Illustration ohne Zahlungsfunktion.<br>Netzstromtarif: CHF 0.28/kWh · Solartarif: CHF 0.18/kWh</div></div>';
  }
- drop.addEventListener('click',function(){file.click()});
- file.addEventListener('change',function(){if(file.files[0])run(file.files[0].name);file.value=''});
- go.addEventListener('click',function(){run()});
- ['dragenter','dragover'].forEach(function(e){drop.addEventListener(e,function(ev){ev.preventDefault();drop.classList.add('over')})});
- ['dragleave','drop'].forEach(function(e){drop.addEventListener(e,function(ev){ev.preventDefault();drop.classList.remove('over')})});
- drop.addEventListener('drop',function(ev){var f=ev.dataTransfer.files[0];run(f?f.name:undefined)});
+ customers.forEach(c=>{const b=document.createElement('button');b.type='button';b.className='demo-customer';b.dataset.id=c.id;b.setAttribute('aria-pressed','false');b.innerHTML='<span><b>'+c.name+'</b><small>'+c.unit+' · '+kwh(c.kwh)+'</small></span><strong>'+chf(amount(c)+8)+'</strong>';b.addEventListener('click',()=>{show(c);progress.textContent='Beispielrechnung für '+c.name+' angezeigt.'});list.appendChild(b)});
+ go.addEventListener('click',()=>{started=true;go.disabled=true;go.textContent='Demo läuft …';progress.textContent='1/3 · Messwerte der Musterliegenschaft werden zusammengestellt …';setTimeout(()=>{progress.textContent='2/3 · Beispieltarife werden angewendet …';setTimeout(()=>{show(customers.find(c=>c.id===selected)||customers[0]);progress.textContent='3/3 · Fertig! Wählen Sie links einen Bezüger, um die Einzelrechnung anzusehen.';go.disabled=false;go.textContent='↻ Demo erneut starten'},450)},450)});
 })();
 </script>
 <script>
