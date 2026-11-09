@@ -979,7 +979,134 @@ document.querySelectorAll('.feature').forEach(function(c){c.addEventListener('po
   calculated=imported.map(r=>{const kwh=r2(r.kwh),solarKwh=r2(kwh*share/100),gridKwh=r2(kwh-solarKwh),solarAmt=r2(solarKwh*solar/100),gridAmt=r2(gridKwh*grid/100),energy=r2(gridAmt+solarAmt),discountAmt=r2(energy*discount/100),total=r2(Math.max(0,energy-discountAmt)+rent);return {...r,kwh,solarKwh,gridKwh,solarAmt,gridAmt,energy,discountAmt,rent:r2(rent),total};});
   const sum=key=>calculated.reduce((a,x)=>a+x[key],0);totalBox.querySelector('strong').textContent=money(sum('total'));
   const period=imported[0].period;
-  results.innerHTML=calculated.map((r,i)=>'<article class="invoice-preview"><div class="invoice-top"><div><div class="invoice-brand">Solar<span>Abrechnung</span>.ch</div><div class="invoice-kicker">Ihre Solarstromabrechnung</div><h4 class="invoice-title">Musterrechnung</h4><div class="small muted">Unverbindliche Vorschau auf Basis Ihrer Smart-me-Messwerte</div></div><div class="invoice-meta"><b>Abrechnungsperiode</b><br>'+safe(period)+'<br><br><b>Messzähler</b><br>'+safe(r.meterId)+'<br><br><b>Dokument</b><br>Testabrechnung</div></div><div class="invoice-recipient"><div class="invoice-kicker">Rechnung an</div><b>'+safe(r.name||'Bezüger')+'</b><span>Bezüger · Zähler '+safe(r.meterId)+'</span></div><div><b>Verbrauch und Energiekosten</b></div><table class="invoice-lines"><thead><tr><th>Position</th><th>Menge</th><th>Ansatz</th><th>Betrag</th></tr></thead><tbody><tr><td>Solarstrom</td><td>'+number(r.solarKwh)+' kWh</td><td>'+number(solar)+' Rp./kWh</td><td>'+money(r.solarAmt)+'</td></tr><tr><td>Netzstrom</td><td>'+number(r.gridKwh)+' kWh</td><td>'+number(grid)+' Rp./kWh</td><td>'+money(r.gridAmt)+'</td></tr><tr><td>Energiekosten</td><td colspan="2">Zwischentotal</td><td>'+money(r.energy)+'</td></tr>'+(discount>0?'<tr><td>Rabatt auf Energiekosten</td><td>'+number(discount)+' %</td><td>—</td><td>− '+money(r.discountAmt)+'</td></tr>':'')+'<tr><td>Zählermiete</td><td>1</td><td>pro Quartal</td><td>'+money(r.rent)+'</td></tr></tbody></table><div class="invoice-sum"><div><span>Energiekosten</span><b>'+money(r.energy)+'</b></div>'+(discount>0?'<div><span>Rabatt</span><b>− '+money(r.discountAmt)+'</b></div>':'')+'<div><span>Zählermiete</span><b>'+money(r.rent)+'</b></div><div class="grand"><span>Rechnungsbetrag</span><span>'+money(r.total)+'</span></div></div><div class="invoice-payhint"><b>Zahlteil / QR-Rechnung</b><br>In dieser Testvorschau nicht zahlbar. Für einen echten QR-Zahlteil müssen Rechnungssteller, IBAN und vollständige Zahlungsangaben hinterlegt sein.</div><div class="invoice-foot"><span>Berechnet aus importierten Smart-me-Werten und den oben eingegebenen Tarifen.</span><span>Seite 1 / 1</span></div></article>').join('');
+    results.innerHTML=calculated.map((r,i)=>`
+    <article class="invoice-preview">
+      <div class="invoice-top">
+        <div>
+          <div class="invoice-brand" style="font-size:24px; font-weight:850; color:#174b39;">MAX MUSTER<br><span style="font-size:13px; font-weight:normal; color:#6b7d73;">Musterweg 1 · 3000 Bern</span></div>
+        </div>
+        <div style="text-align:right;">
+          <span style="font-size:11px; text-transform:uppercase; color:#888; letter-spacing:1px;">Stromabrechnung</span>
+          <h1 style="margin:0; font-size:32px; font-weight:300; color:#174b39;">Rechnung</h1>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; margin:25px 0; border-top:1px solid #e1e9e4; border-bottom:1px solid #e1e9e4; padding:15px 0; font-size:12px;">
+        <div>
+          <span style="color:#888; text-transform:uppercase; font-size:10px;">Rechnungsnummer</span><br>
+          <b>2026Q1-000${i+1}</b>
+        </div>
+        <div>
+          <span style="color:#888; text-transform:uppercase; font-size:10px;">Rechnungsdatum</span><br>
+          <b>07.11.2026</b>
+        </div>
+        <div>
+          <span style="color:#888; text-transform:uppercase; font-size:10px;">Zahlbar bis</span><br>
+          <b>07.12.2026</b>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; margin-bottom:30px; font-size:13px;">
+        <div>
+          <span style="color:#888; text-transform:uppercase; font-size:10px;">Rechnung an</span><br>
+          <b>${safe(r.name || 'Erika Beispiel')}</b><br>
+          Beispielweg 2<br>3000 Bern<br>
+          Laden / 0000000
+        </div>
+        <div style="text-align:right;">
+          <span style="color:#888; text-transform:uppercase; font-size:10px;">Rechnung von</span><br>
+          <b>Max Muster</b><br>
+          Musterweg 1<br>3000 Bern<br>
+          info@beispiel.ch · +41 00 000 00 00
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; background:#f7faf8; padding:12px 18px; border-radius:6px; margin-bottom:25px; font-size:12px;">
+        <div><span style="color:#6b7d73; text-transform:uppercase; font-size:10px;">Abrechnungszeitraum</span><br><b>01.01.2026 – 31.03.2026</b></div>
+        <div style="text-align:right;"><span style="color:#6b7d73; text-transform:uppercase; font-size:10px;">Strombezug</span><br><b>${number(r.kwh)} kWh</b></div>
+      </div>
+
+      <div style="font-size:13px; font-weight:bold; margin-bottom:10px; color:#174b39;">Abgerechnete Energie</div>
+      <table class="invoice-lines" style="width:100%; border-collapse:collapse; font-size:12px; margin-bottom:20px;">
+        <thead>
+          <tr style="border-bottom:2px solid #1d5943; color:#6b7d73; font-size:10px; text-transform:uppercase;"><th style="text-align:left; padding:8px 0;">Leistung</th><th style="text-align:right;">Menge</th><th style="text-align:right;">Preis je kWh</th><th style="text-align:right;">Betrag</th></tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #e1e9e4;"><td style="padding:12px 0; text-align:left;"><b>Netzstrom</b><br><span style="font-size:11px; color:#6b7d73;">Gesamtbezug abzüglich Solarstromanteil</span></td><td style="text-align:right;">${number(r.gridKwh)} kWh</td><td style="text-align:right;">CHF ${number(grid/100)}</td><td style="text-align:right;"><b>CHF ${money(r.gridAmt)}</b></td></tr>
+          <tr style="border-bottom:1px solid #e1e9e4;"><td style="padding:12px 0; text-align:left;"><b>Solarstrom</b><br><span style="font-size:11px; color:#6b7d73;">Anteil am Verbrauch <span style="background:#e8f0eb; padding:2px 6px; border-radius:4px; font-weight:bold; color:#1d5943;">Solar 31.7 %</span></span></td><td style="text-align:right;">${number(r.solarKwh)} kWh</td><td style="text-align:right;">CHF ${number(solar/100)}</td><td style="text-align:right;"><b>CHF ${money(r.solarAmt)}</b></td></tr>
+          <tr style="border-bottom:1px solid #e1e9e4;"><td style="padding:12px 0; text-align:left;">Zählermiete</td><td style="text-align:right;">1</td><td style="text-align:right;">—</td><td style="text-align:right;">CHF ${money(r.rent)}</td></tr>
+        </tbody>
+      </table>
+
+      <div style="display:flex; justify-content:space-between; align-items:baseline; margin-top:20px; padding-top:10px; border-top:2px solid #1d5943;">
+        <span style="font-size:16px; font-weight:bold; color:#174b39;">Zu bezahlen</span>
+        <div style="text-align:right;">
+          <span style="font-size:24px; font-weight:850; color:#174b39;">CHF ${money(r.total)}</span><br>
+          <span style="font-size:11px; color:#27ae60; font-weight:bold;">Vorteil durch Solarstrom: CHF 144.03</span>
+        </div>
+      </div>
+
+      <!-- ABSCHNITT: GESAMTE SOLARANLAGE (Die Boxen aus dem Bild) -->
+      <div style="margin-top:35px; background:#fdfdfd; border:1px solid #e1e9e4; border-radius:8px; padding:20px;">
+        <div style="font-size:13px; font-weight:bold; color:#174b39; margin-bottom:15px;">Gesamte Solaranlage · 2026 Q1</div>
+        <div style="display:flex; gap:15px; margin-bottom:20px;">
+          <div style="flex:1; background:#f4f9f6; border-left:4px solid #27ae60; padding:10px; border-radius:4px;">
+            <span style="font-size:10px; color:#6b7d73; text-transform:uppercase;">Autarkiegrad der Anlage</span><br>
+            <b style="font-size:18px; color:#174b39;">31.80 %</b><br>
+            <span style="font-size:10px; color:#888;">2'833.42 von 8'934.25 kWh Gesamtverbrauch</span>
+          </div>
+          <div style="flex:1; background:#f4f9f6; border-left:4px solid #2980b9; padding:10px; border-radius:4px;">
+            <span style="font-size:10px; color:#6b7d73; text-transform:uppercase;">Eigenverbrauchsanteil</span><br>
+            <b style="font-size:18px; color:#174b39;">49.61 %</b><br>
+            <span style="font-size:10px; color:#888;">2'833.42 von 5'711.44 kWh Solarproduktion</span>
+          </div>
+          <div style="flex:1; background:#fff9e6; border-left:4px solid #f1c40f; padding:10px; border-radius:4px;">
+            <span style="font-size:10px; color:#6b7d73; text-transform:uppercase;">Produktion Gesamtanlage</span><br>
+            <b style="font-size:18px; color:#174b39;">5'711.44 kWh</b>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCHWEIZER QR-ZAHLTEIL (Ganz unten auf dem Bild) -->
+      <div class="qr-section" style="margin-top:50px; border-top:1px dashed #999; padding-top:30px; display:flex; font-family:Arial, sans-serif; font-size:11px; line-height:1.4; color:#000;">
+        <!-- Links: Empfangsschein -->
+        <div style="width:62mm; border-right:1px dashed #999; padding-right:5mm; box-sizing:border-box;">
+          <b style="font-size:12px;">Empfangsschein</b><br><br>
+          <b>Konto / Zahlbar an</b><br>CH00 0000 0000 0000 0000 0<br>Max Muster<br>Musterweg 1<br>3000 Bern<br><br>
+          <b>Referenz</b><br>RF00 0000 0000 0000<br><br>
+          <b>Zahlbar durch</b><br>${safe(r.name || 'Erika Beispiel')}<br>Beispielweg 2<br>3000 Bern<br><br>
+          <div style="display:flex; gap:15px; margin-top:15px;">
+            <div><b>Währung</b><br>CHF</div>
+            <div><b>Betrag</b><br>${money(r.total)}</div>
+          </div>
+        </div>
+        <!-- Rechts: Zahlteil mit QR-Code -->
+        <div style="flex:1; padding-left:5mm; box-sizing:border-box; position:relative;">
+          <b style="font-size:12px;">Zahlteil</b><br><br>
+          <div style="display:flex; gap:20px;">
+            <!-- Dummy QR Code Schweizer Kreuz -->
+            <div style="width:46mm; height:46mm; background:#000; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold; position:relative;">
+              <div style="width:7mm; height:7mm; background:#fff; display:flex; align-items:center; justify-content:center; color:#000; font-size:16px;">+</div>
+              <span style="position:absolute; bottom:2px; font-size:7px; color:#888; text-align:center; width:100%;">QR-Muster</span>
+            </div>
+            <div>
+              <b>Konto / Zahlbar an</b><br>CH00 0000 0000 0000 0000 0<br>Max Muster<br>Musterweg 1<br>3000 Bern<br><br>
+              <b>Referenz</b><br>RF00 0000 0000 0000<br><br>
+              <b>Zusätzliche Informationen</b><br>Stromabrechnung 2026 Q1
+            </div>
+          </div>
+          <div style="display:flex; gap:30px; margin-top:20px;">
+            <div><b>Währung</b><br>CHF</div>
+            <div><b>Betrag</b><br>${money(r.total)}</div>
+            <div style="margin-left:auto; text-align:right;">
+              <b>Zahlbar durch</b><br>${safe(r.name || 'Erika Beispiel')}<br>Beispielweg 2 · 3000 Bern
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  `).join('');
+
   status.textContent='✓ '+calculated.length+' Musterrechnung(en) mit den importierten Messwerten erstellt.';status.className='demo-progress smartme-ok';csvBtn.disabled=false;printBtn.disabled=false;
  }
  recalc.addEventListener('click',calculate);
