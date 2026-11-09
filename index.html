@@ -23,11 +23,12 @@
   }
 </script>
 
+<link class="swiftype" name="title" data-type="string" href="https://marcoae-png.github.io/Solarabrechnung/" />
 <link rel="canonical" href="https://marcoae-png.github.io/Solarabrechnung/">
 <link rel="alternate" hreflang="de-CH" href="https://marcoae-png.github.io/Solarabrechnung/">
 <link rel="alternate" hreflang="x-default" href="https://marcoae-png.github.io/Solarabrechnung/">
 
-<!-- Favicons & App-Icons (Nutzt Ihre SVG-Vorschau als Fallback und eine PNG-Datei für Google/PWA) -->
+<!-- Favicons & App-Icons -->
 <link rel="icon" type="image/png" sizes="48x48" href="./favicon.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23123d35'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23f0c869'/%3E%3Cg stroke='%23ead9b5' stroke-width='4' stroke-linecap='round'%3E%3Cpath d='M32 8v6M32 50v6M8 32h6M50 32h6M15 15l4 4M45 45l4 4M49 15l-4 4M19 45l-4 4'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="./favicon.png">
@@ -49,6 +50,7 @@
 <meta name="twitter:image" content="https://marcoae-png.github.io/Solarabrechnung/og-image.png">
 
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Organization", "name": "SolarAbrechnung.ch", "url": "https://marcoae-png.github.io/Solarabrechnung/", "logo": "https://marcoae-png.github.io/Solarabrechnung/og-image.png", "email": "marco.aebersold@bluewin.ch", "areaServed": "CH"}, {"@context": "https://schema.org", "@type": "WebSite", "name": "SolarAbrechnung.ch", "url": "https://marcoae-png.github.io/Solarabrechnung/", "inLanguage": "de-CH"}, {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "SolarAbrechnung.ch", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "inLanguage": "de-CH", "description": "Solarstromabrechnung in Sekunden: Smart-me-Daten importieren, Solar Manager anbinden und die Rechnung mit Schweizer QR-Zahlteil direkt erstellen.", "url": "https://marcoae-png.github.io/Solarabrechnung/", "audience": {"@type": "Audience", "audienceType": "Eigentümer, Liegenschaftsverwaltungen, Solarteure"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Welche Daten kann ich importieren?", "acceptedAnswer": {"@type": "Answer", "text": "Die aktuelle Anwendung verarbeitet Smart-me-Excel-Dateien (.xlsx). Mehrere Bezügerdateien können für dasselbe volle Kalenderquartal gemeinsam ausgewählt werden."}}, {"@type": "Question", "name": "Welche Rolle spielt der Solar Manager?", "acceptedAnswer": {"@type": "Answer", "text": "Die Anwendung ruft Kennzahlen über die Solar-Manager-API ab. Dafür wird ein passender API-Schlüssel benötigt, der in der lokalen Anwendung hinterlegt wird."}}, {"@type": "Question", "name": "Kann ich die Rechnungen als PDF versenden?", "acceptedAnswer": {"@type": "Answer", "text": "Die Rechnungen können im Browser geöffnet und als PDF gedruckt bzw. gespeichert werden. Ein E-Mail-Versand ist mit eingerichtetem SMTP-Mailserver vorgesehen."}}, {"@type": "Question", "name": "Ist die Lösung für mehrere Liegenschaften geeignet?", "acceptedAnswer": {"@type": "Answer", "text": "Das vorgesehene Geschäftsmodell ist ein Jahresabo pro Liegenschaft. Wie mehrere Liegenschaften technisch und organisatorisch eingerichtet werden, wird im persönlichen Gespräch geklärt."}}, {"@type": "Question", "name": "Ist die Software bereits für alle Schweizer Abrechnungsmodelle geeignet?", "acceptedAnswer": {"@type": "Answer", "text": "Die aktuelle Anwendung bildet den beschriebenen Import- und Abrechnungsablauf ab. Die Eignung für konkrete Modelle und regulatorische Anforderungen – beispielsweise ZEV, vZEV oder LEG – muss vor dem Einsatz im jeweiligen Fall geprüft werden."}}]}]</script>
+
 <style>
 :root{
   --forest:#123d35;--forest2:#1b594b;--green:#24715e;--gold:#c9a765;
@@ -81,6 +83,9 @@ header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdro
 .btn-dark:hover{background:var(--forest2);transform:translateY(-1px)}
 .btn-outline{border-color:#b9c9c0;color:var(--forest);background:#fff}
 .btn-outline:hover{border-color:var(--green);background:var(--mint)}
+</style>
+</head>
+
 .menu-toggle{display:none;background:none;border:0;color:var(--forest);font-size:26px}
 .hero{position:relative;overflow:hidden;background:linear-gradient(120deg,#103a32 0%,#174d41 62%,#1e6653 100%);color:#fff;padding:83px 0 76px}
 .hero:before,.hero:after{content:"";position:absolute;border:1px solid #ffffff12;border-radius:50%;pointer-events:none}
@@ -637,10 +642,9 @@ details[open]{background:#fff;box-shadow:0 14px 40px -20px rgba(18,61,53,.35)}
    </div>
    <div class="floating-note"><b>Einfach &amp; übersichtlich</b>Von Import bis Rechnung</div>
   </div>
- </div>
-
-
+ </div> <!-- Hier wird das 'container hero-grid' jetzt an der korrekten Stelle geschlossen -->
 </section>
+
 
 <div class="strip"><div class="container"><span>Funktioniert mit</span><span>Smart-me</span><span>Solar Manager</span><span>Excel-Import (.xlsx)</span><span>QR-Rechnung</span><span>PDF &amp; E-Mail</span></div></div>
 
